@@ -11,67 +11,75 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-[#FFF5F7] text-gray-800 p-6 min-h-screen">
-    <div class="max-w-6xl mx-auto">
+<body class="bg-[#FFF5F7] text-gray-800 p-4 md:p-6 min-h-screen">
+    <div class="max-w-7xl mx-auto">
         
-        <!-- Header & Live Clock Malaysia -->
+        <!-- Header & Live Clock Malaysia (Fixed Size Box) -->
         <div class="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
             <div>
                 <div class="flex items-center gap-2">
                     <span class="text-2xl">🍵🍓</span>
                     <h1 class="text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight">Flip Barang Cashflow</h1>
                 </div>
-                <p class="text-xs text-gray-500 mt-1 font-medium">Sistem Tracker Bisnes Real-Time</p>
+                <p class="text-xs text-gray-500 mt-1 font-medium">Sistem Tracker Bisnes Real-Time & Filter</p>
             </div>
             
-            <!-- Widget Jam Waktu Malaysia -->
-            <div class="bg-[#D8F3DC] px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner">
+            <!-- Widget Jam Waktu Malaysia (Fixed Size w-[270px]) -->
+            <div class="bg-[#D8F3DC] px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-[270px] shrink-0">
                 <span class="text-xl">🇲🇾</span>
                 <div>
                     <p class="text-[10px] uppercase tracking-wider text-[#2D6A4F] font-bold">Waktu Malaysia (MYT)</p>
-                    <p id="malaysiaClock" class="text-sm font-extrabold text-[#1B4332]">Memuatkan masa...</p>
+                    <p id="malaysiaClock" class="text-sm font-extrabold text-[#1B4332] whitespace-nowrap">Memuatkan masa...</p>
                 </div>
             </div>
         </div>
         
-        <!-- Kad Ringkasan (Summary Cards - Gaya Pastel Card) -->
+        <!-- Kad Ringkasan (Summary Cards) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <!-- Modal Keluar (Strawberry Pink Card) -->
-            <div class="bg-gradient-to-br from-[#FFE3E8] to-[#FFCCD5] p-6 rounded-3xl shadow-sm border border-[#FFB3C6] relative overflow-hidden">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <p class="text-xs font-bold text-[#9B2226] uppercase tracking-wider">Total Modal Keluar</p>
-                        <p id="totalKeluar" class="text-3xl font-black text-[#AE2012] mt-2">RM 0.00</p>
-                    </div>
-                    <span class="text-3xl bg-white/60 p-3 rounded-2xl shadow-sm">🍓</span>
-                </div>
+            <div class="bg-gradient-to-br from-[#FFE3E8] to-[#FFCCD5] p-6 rounded-3xl shadow-sm border border-[#FFB3C6]">
+                <p class="text-xs font-bold text-[#9B2226] uppercase tracking-wider">Total Modal Keluar</p>
+                <p id="totalKeluar" class="text-3xl font-black text-[#AE2012] mt-2">RM 0.00</p>
             </div>
-
-            <!-- Total Terjual (Matcha Light Card) -->
-            <div class="bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] p-6 rounded-3xl shadow-sm border border-[#A5D6A7] relative overflow-hidden">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <p class="text-xs font-bold text-[#1B4332] uppercase tracking-wider">Total Terjual</p>
-                        <p id="totalTerjual" class="text-3xl font-black text-[#2D6A4F] mt-2">RM 0.00</p>
-                    </div>
-                    <span class="text-3xl bg-white/60 p-3 rounded-2xl shadow-sm">💰</span>
-                </div>
+            <div class="bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] p-6 rounded-3xl shadow-sm border border-[#A5D6A7]">
+                <p class="text-xs font-bold text-[#1B4332] uppercase tracking-wider">Total Terjual</p>
+                <p id="totalTerjual" class="text-3xl font-black text-[#2D6A4F] mt-2">RM 0.00</p>
             </div>
+            <div class="bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] p-6 rounded-3xl shadow-sm text-white">
+                <p class="text-xs font-bold text-[#D8F3DC] uppercase tracking-wider">Jumlah Untung Bersih</p>
+                <p id="jumlahUntung" class="text-3xl font-black text-[#95D5B2] mt-2">RM 0.00</p>
+            </div>
+        </div>
 
-            <!-- Jumlah Untung Bersih (Matcha Dark Card) -->
-            <div class="bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] p-6 rounded-3xl shadow-sm text-white relative overflow-hidden">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <p class="text-xs font-bold text-[#D8F3DC] uppercase tracking-wider">Jumlah Untung Bersih</p>
-                        <p id="jumlahUntung" class="text-3xl font-black text-[#95D5B2] mt-2">RM 0.00</p>
-                    </div>
-                    <span class="text-3xl bg-white/10 p-3 rounded-2xl">🍵</span>
-                </div>
+        <!-- Bahagian Filter Bar -->
+        <div class="bg-white p-4 md:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-gray-600 mb-1">🔍 Filter Masa:</label>
+                <select id="filterTime" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    <option value="all">Semua Masa</option>
+                    <option value="week">Minggu Ini (7 Hari Lepas)</option>
+                    <option value="month">Bulan Ini</option>
+                    <option value="year">Tahun Ini</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-600 mb-1">🏷️ Filter Kategori:</label>
+                <select id="filterCategory" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    <option value="all">Semua Kategori</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-600 mb-1">💳 Filter Payment:</label>
+                <select id="filterPayment" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    <option value="all">Semua Payment</option>
+                    <option value="QR">QR</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Banking">Banking</option>
+                </select>
             </div>
         </div>
 
         <!-- Jadual Senarai Transaksi -->
-        <div class="bg-white rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden">
+        <div class="bg-white rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
             <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#FFFAFA]">
                 <h2 class="text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
                 <button onclick="fetchData()" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center gap-1.5">
@@ -82,6 +90,7 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-[#FFF0F3] text-gray-600 uppercase text-[11px] tracking-wider">
+                            <th class="py-3.5 px-4 font-bold text-center">Bil</th>
                             <th class="py-3.5 px-6 font-bold">Tarikh</th>
                             <th class="py-3.5 px-6 font-bold">Kategori</th>
                             <th class="py-3.5 px-6 font-bold">Nama Barang</th>
@@ -97,14 +106,25 @@
                     </tbody>
                 </table>
             </div>
+            
+            <!-- Pagination Controls (10 data per page) -->
+            <div class="px-6 py-4 bg-[#FFFAFA] border-t border-gray-100 flex justify-between items-center">
+                <button id="prevBtn" onclick="changePage(-1)" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">← Sebelumnya</button>
+                <span id="pageIndicator" class="text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
+                <button id="nextBtn" onclick="changePage(1)" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">Seterusnya →</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // URL Web App Google Apps Script anda:
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzibsgR7xSquO1qr77e0PpSlOUElRCRDauGQ2EhhBvBGewloAq81aA45MbBECD-CDhS/exec";
 
-        // Fungsi Jam Real-Time Waktu Malaysia (Asia/Kuala_Lumpur)
+        let allTransactions = [];
+        let filteredTransactions = [];
+        let currentPage = 1;
+        const rowsPerPage = 10;
+
+        // Jam Real-Time Malaysia
         function updateMalaysiaTime() {
             const options = { 
                 timeZone: 'Asia/Kuala_Lumpur', 
@@ -117,56 +137,134 @@
                 hour12: true 
             };
             const now = new Date();
-            const timeString = new Intl.DateTimeFormat('ms-MY', options).format(now);
-            document.getElementById('malaysiaClock').innerText = timeString;
+            document.getElementById('malaysiaClock').innerText = new Intl.DateTimeFormat('ms-MY', options).format(now);
         }
         setInterval(updateMalaysiaTime, 1000);
         updateMalaysiaTime();
 
-        // Fungsi Ambil Data dari Google Sheets
+        // Ambil Data dari Google Sheets
         async function fetchData() {
             try {
                 const response = await fetch(WEB_APP_URL);
                 const data = await response.json();
 
-                // Paparkan nilai ringkasan (summary)
                 document.getElementById('totalKeluar').innerText = `RM ${parseFloat(data.summary.totalKeluar).toFixed(2)}`;
                 document.getElementById('totalTerjual').innerText = `RM ${parseFloat(data.summary.totalTerjual).toFixed(2)}`;
                 document.getElementById('jumlahUntung').innerText = `RM ${parseFloat(data.summary.jumlahUntung).toFixed(2)}`;
 
-                // Paparkan senarai transaksi dalam jadual
-                const tbody = document.getElementById('tableBody');
-                tbody.innerHTML = '';
-
-                if (data.transactions.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-gray-400">Tiada transaksi lagi.</td></tr>`;
-                    return;
-                }
-
-                data.transactions.forEach(tx => {
-                    const row = document.createElement('tr');
-                    row.className = "hover:bg-[#FFF5F7]/50 transition";
-                    row.innerHTML = `
-                        <td class="py-3.5 px-6 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
-                        <td class="py-3.5 px-6"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-2.5 py-1 rounded-xl text-xs font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
-                        <td class="py-3.5 px-6 font-extrabold text-gray-800">${tx.namaBarang}</td>
-                        <td class="py-3.5 px-6"><span class="text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
-                        <td class="py-3.5 px-6 text-[#AE2012] font-bold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
-                        <td class="py-3.5 px-6 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
-                        <td class="py-3.5 px-6 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
-                        <td class="py-3.5 px-6 text-gray-400 text-xs">${tx.notes || '-'}</td>
-                    `;
-                    tbody.appendChild(row);
-                });
+                allTransactions = data.transactions || [];
+                populateCategoryDropdown();
+                applyFilters();
             } catch (error) {
                 console.error('Ralat memuatkan data:', error);
             }
         }
 
-        // Panggil fungsi semasa mula-mula buka laman web
-        fetchData();
+        // Jana Pilihan Kategori Automatik ke dalam Dropdown
+        function populateCategoryDropdown() {
+            const categorySelect = document.getElementById('filterCategory');
+            const currentSelected = categorySelect.value;
+            
+            // Ambil kategori unik
+            const categories = [...new Set(allTransactions.map(t => t.kategori))].filter(Boolean);
+            
+            let optionsHtml = '<option value="all">Semua Kategori</option>';
+            categories.forEach(cat => {
+                optionsHtml += `<option value="${cat}">${cat}</option>`;
+            });
+            categorySelect.innerHTML = optionsHtml;
+            categorySelect.value = currentSelected;
+        }
 
-        // Auto-refresh data setiap 30 saat
+        // Fungsi Penapisan (Filtering Logic)
+        function applyFilters() {
+            const timeFilter = document.getElementById('filterTime').value;
+            const categoryFilter = document.getElementById('filterCategory').value;
+            const paymentFilter = document.getElementById('filterPayment').value;
+
+            const now = new Date();
+
+            filteredTransactions = allTransactions.filter(tx => {
+                // Parse Tarikh
+                let cleanDateStr = (tx.tarikh || '').replace(' at ', ' ');
+                let txDate = new Date(cleanDateStr);
+                if (isNaN(txDate)) txDate = new Date(); // Fallback jika format berbeza
+
+                // Filter Masa
+                if (timeFilter === 'week') {
+                    const diffTime = Math.abs(now - txDate);
+                    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                    if (diffDays > 7) return false;
+                } else if (timeFilter === 'month') {
+                    if (txDate.getMonth() !== now.getMonth() || txDate.getFullYear() !== now.getFullYear()) return false;
+                } else if (timeFilter === 'year') {
+                    if (txDate.getFullYear() !== now.getFullYear()) return false;
+                }
+
+                // Filter Kategori
+                if (categoryFilter !== 'all' && tx.kategori !== categoryFilter) return false;
+
+                // Filter Payment Method
+                if (paymentFilter !== 'all' && tx.paymentMethod !== paymentFilter) return false;
+
+                return true;
+            });
+
+            currentPage = 1;
+            renderTable();
+        }
+
+        // Papar Jadual dengan Pagination (10 data setiap page)
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            if (filteredTransactions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-gray-400">Tiada transaksi sepadan ditemui.</td></tr>`;
+                document.getElementById('pageIndicator').innerText = "Halaman 0 dari 0";
+                document.getElementById('prevBtn').disabled = true;
+                document.getElementById('nextBtn').disabled = true;
+                return;
+            }
+
+            const totalPages = Math.ceil(filteredTransactions.length / rowsPerPage);
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const startIdx = (currentPage - 1) * rowsPerPage;
+            const endIdx = startIdx + rowsPerPage;
+            const pageData = filteredTransactions.slice(startIdx, endIdx);
+
+            pageData.forEach((tx, index) => {
+                const actualIndex = startIdx + index + 1; // Nombor Bilangan urutan
+                const row = document.createElement('tr');
+                row.className = "hover:bg-[#FFF5F7]/50 transition";
+                row.innerHTML = `
+                    <td class="py-3.5 px-4 text-center font-bold text-gray-400 text-xs">${actualIndex}</td>
+                    <td class="py-3.5 px-6 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
+                    <td class="py-3.5 px-6"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-2.5 py-1 rounded-xl text-xs font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
+                    <td class="py-3.5 px-6 font-extrabold text-gray-800">${tx.namaBarang}</td>
+                    <td class="py-3.5 px-6"><span class="text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
+                    <td class="py-3.5 px-6 text-[#AE2012] font-bold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                    <td class="py-3.5 px-6 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                    <td class="py-3.5 px-6 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                    <td class="py-3.5 px-6 text-gray-400 text-xs">${tx.notes || '-'}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Kemas kini status Pagination buttons
+            document.getElementById('pageIndicator').innerText = `Halaman ${currentPage} dari ${totalPages}`;
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+        }
+
+        // Tukar Halaman Pagination
+        function changePage(direction) {
+            currentPage += direction;
+            renderTable();
+        }
+
+        fetchData();
         setInterval(fetchData, 30000);
     </script>
 </body>
