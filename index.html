@@ -46,34 +46,35 @@
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Header: Kiri (Logo + Tajuk), Kanan (Theme Switch + Admin Login + Jam Malaysia) -->
-        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4 transition-colors duration-300">
-            
-            <!-- Bahagian Kiri: Logo (Besar di Mobile) + Tajuk -->
-            <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 w-full lg:w-auto text-center sm:text-left">
-                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-32 sm:h-32 md:h-36 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
-                <div>
-                    <div class="flex items-center justify-center sm:justify-start gap-2">
-                        <span class="text-lg sm:text-2xl">🍵🍓</span>
-                        <h1 class="text-base sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
+        <!-- Header: Kiri (Logo + Tajuk), Kanan (Theme Switch + Admin Login di Penjuru Atas Kanan) -->
+        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 transition-colors duration-300">
+            <div class="flex justify-between items-start w-full gap-2 sm:gap-4">
+                
+                <!-- Bahagian Kiri: Logo + Tajuk -->
+                <div class="flex items-center gap-2 sm:gap-6 text-left">
+                    <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-16 sm:h-28 md:h-32 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
+                    <div>
+                        <div class="flex items-center gap-1.5 sm:gap-2">
+                            <span class="text-sm sm:text-2xl">🍵🍓</span>
+                            <h1 class="text-xs sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight leading-snug" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bahagian Kanan: Tombol Tema (Switch), Admin Login & Jam Waktu Malaysia -->
-            <div class="flex flex-col items-end gap-2 w-full lg:w-auto">
-                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                    <!-- Suis Dark/Light Theme yang Interaktif -->
-                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2 rounded-xl sm:py-2.5 font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5">
-                        🌙 <span>Dark Mode</span>
+                <!-- Bahagian Kanan (Penjuru Atas Kanan): Tombol Tema & Admin Login -->
+                <div class="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 sm:gap-2 shrink-0">
+                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-[10px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1">
+                        🌙 <span class="hidden sm:inline">Dark Mode</span>
                     </button>
-                    <!-- Butang Admin Login -->
-                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2 rounded-xl sm:py-2.5 font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer">
-                        🔐 Admin Login
+                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-[10px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer">
+                        🔐 <span class="hidden sm:inline">Admin Login</span>
                     </button>
                 </div>
 
-                <!-- Jam Waktu Malaysia + Live Indicator -->
+            </div>
+
+            <!-- Jam Waktu Malaysia di Bawah Header -->
+            <div class="mt-3 flex justify-end">
                 <div id="clockBox" class="bg-[#D8F3DC]/95 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-2 sm:gap-3 shadow-inner w-full sm:w-[260px] shrink-0 transition-colors duration-300">
                     <div class="flex items-center gap-2">
                         <span class="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
@@ -139,7 +140,7 @@
             </div>
         </div>
 
-        <!-- Jadual Senarai Transaksi (Dioptimumkan agar lebih padat dan luas) -->
+        <!-- Jadual Senarai Transaksi -->
         <div id="tableBox" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300">
             <div id="tableHeader" class="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
                 <h2 class="text-sm sm:text-lg font-bold text-gray-700" id="tableTitle">Senarai Transaksi Terkini</h2>
@@ -262,10 +263,10 @@
             if (isDarkMode) {
                 // Tema Gelap dengan Neon Pink Accent yang Menarik & Jelas
                 body.className = "bg-[#090d16] text-gray-100 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
-                themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
-                themeBtn.className = "text-[11px] sm:text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5";
+                themeBtn.innerHTML = "☀️ <span class='hidden sm:inline'>Light Mode</span>";
+                themeBtn.className = "text-[10px] sm:text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1";
                 
-                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4 transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] mb-4 sm:mb-6 transition-colors duration-300";
                 if(filterBox) filterBox.className = "bg-[#111827]/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-lg border-2 border-[#ff2a85]/60 mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-[#111827]/95 backdrop-blur-sm rounded-3xl shadow-xl border-2 border-[#ff2a85]/60 overflow-hidden mb-6 transition-colors duration-300";
                 if(tableHeader) tableHeader.className = "px-3 sm:px-6 py-3 sm:py-4 border-b border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center bg-[#0d121d]/95 gap-3 transition-colors duration-300";
@@ -276,16 +277,16 @@
                 if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-emerald-400 transition-colors duration-300";
                 if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-cyan-400 transition-colors duration-300 text-white";
                 
-                if(mainTitle) mainTitle.className = "text-base sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)]";
+                if(mainTitle) mainTitle.className = "text-xs sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)] leading-snug";
                 if(tableTitle) tableTitle.className = "text-sm sm:text-lg font-bold text-gray-100";
 
             } else {
                 // Tema Asal (Matcha Strawberry)
                 body.className = "bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
-                themeBtn.innerHTML = "🌙 <span>Dark Mode</span>";
-                themeBtn.className = "text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] border border-[#2D6A4F]/30 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm cursor-pointer flex items-center gap-1.5";
+                themeBtn.innerHTML = "🌙 <span class='hidden sm:inline'>Dark Mode</span>";
+                themeBtn.className = "text-[10px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] border border-[#2D6A4F]/30 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm cursor-pointer flex items-center gap-1";
                 
-                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4 transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 transition-colors duration-300";
                 if(filterBox) filterBox.className = "bg-white/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300";
                 if(tableHeader) tableHeader.className = "px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300";
@@ -296,7 +297,7 @@
                 if(card2) card2.className = "bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300";
                 if(card3) card3.className = "bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm text-white transition-colors duration-300";
                 
-                if(mainTitle) mainTitle.className = "text-base sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight";
+                if(mainTitle) mainTitle.className = "text-xs sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight leading-snug";
                 if(tableTitle) tableTitle.className = "text-sm sm:text-lg font-bold text-gray-700";
             }
             renderTable();
@@ -305,8 +306,8 @@
         function toggleAdminModal() {
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
-                document.getElementById('adminBtn').innerText = "🔐 Admin Login";
-                document.getElementById('adminBtn').className = "text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer";
+                document.getElementById('adminBtn').innerHTML = "🔐 <span class='hidden sm:inline'>Admin Login</span>";
+                document.getElementById('adminBtn').className = "text-[10px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer";
                 alert("Anda telah Log Out dari Mod Admin.");
                 renderTable();
                 return;
@@ -324,8 +325,8 @@
                 document.getElementById('adminUser').value = "";
                 document.getElementById('adminPass').value = "";
                 
-                document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
-                document.getElementById('adminBtn').className = "text-[11px] sm:text-xs bg-red-100 text-red-700 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm border border-red-300 cursor-pointer";
+                document.getElementById('adminBtn').innerHTML = "🔓 <span class='hidden sm:inline'>Admin (ON)</span>";
+                document.getElementById('adminBtn').className = "text-[10px] sm:text-xs bg-red-100 text-red-700 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm border border-red-300 cursor-pointer";
                 
                 alert("Log Masuk Admin Berjaya!");
                 renderTable();
@@ -492,15 +493,20 @@
                 
                 let actionTd = isAdminLoggedIn ? `<td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[9px] sm:text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
 
+                // Warna harga terang kontras khas untuk Dark Mode
+                let modalColor = isDarkMode ? "text-[#ff6b81] font-bold" : "text-[#AE2012] font-bold";
+                let terjualColor = isDarkMode ? "text-[#2ed573] font-bold" : "text-[#2D6A4F] font-bold";
+                let untungColor = isDarkMode ? "text-[#00d2d3] font-black" : "text-[#1B4332] font-black";
+
                 row.innerHTML = `
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center font-bold text-gray-400 text-[9px] sm:text-xs">${actualIndex}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 whitespace-nowrap text-[9px] sm:text-xs">${tx.tarikh}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-xl text-[8px] sm:text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 font-extrabold text-[10px] sm:text-sm">${tx.namaBarang}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4"><span class="text-[8px] sm:text-[10px] font-semibold bg-gray-500/10 px-1.5 py-0.5 sm:px-2 rounded-lg">${tx.paymentMethod}</span></td>
-                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-[#AE2012] font-bold text-[10px] sm:text-sm">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
-                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-[#2D6A4F] font-bold text-[10px] sm:text-sm">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
-                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-[#1B4332] font-black text-[10px] sm:text-sm">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${modalColor} text-[10px] sm:text-sm">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${terjualColor} text-[10px] sm:text-sm">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${untungColor} text-[10px] sm:text-sm">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-gray-400 text-[9px] sm:text-xs">${tx.notes || '-'}</td>
                     ${actionTd}
                 `;
@@ -622,7 +628,6 @@
                 doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, boxY + 16);
 
                 const rows = pdfData.map((tx, idx) => {
-                    // Rapatkan tarikh dan masa secara menegak (Tarikh di atas, masa di bawah)
                     let cleanDate = (tx.tarikh || '').replace(' at ', '\n');
                     return [
                         idx + 1,
@@ -645,15 +650,15 @@
                     headStyles: { fillColor: [45, 106, 79], textColor: [255, 255, 255], fontStyle: 'bold' },
                     styles: { fontSize: 8, cellPadding: 2.5, overflow: 'linebreak' },
                     columnStyles: {
-                        0: { cellWidth: 10, halign: 'center' },   // Kotak Bil diselaraskan
-                        1: { cellWidth: 24 },                   // Tarikh & Masa dirapatkan secara menegak
-                        2: { cellWidth: 20 },                   // Kategori
-                        3: { cellWidth: 22 },                   // Barang
-                        4: { cellWidth: 21, halign: 'center' },   // Kotak Payment dibetulkan supaya muat dan kemas
-                        5: { cellWidth: 20, halign: 'right' },  // Modal
-                        6: { cellWidth: 20, halign: 'right' },  // Terjual
-                        7: { cellWidth: 20, halign: 'right' },  // Untung
-                        8: { cellWidth: 'auto' }                // Notes diberi ruang luas untuk baca comment
+                        0: { cellWidth: 10, halign: 'center' },
+                        1: { cellWidth: 24 },
+                        2: { cellWidth: 20 },
+                        3: { cellWidth: 22 },
+                        4: { cellWidth: 21, halign: 'center' },
+                        5: { cellWidth: 20, halign: 'right' },
+                        6: { cellWidth: 20, halign: 'right' },
+                        7: { cellWidth: 20, halign: 'right' },
+                        8: { cellWidth: 'auto' }
                     },
                     didDrawPage: function (data) {
                         let pageWidth = doc.internal.pageSize.width;
@@ -667,7 +672,6 @@
                     }
                 });
 
-                // Kaedah Blob Download (100% Berjaya & Stabil)
                 const pdfBlob = doc.output('blob');
                 const blobUrl = URL.createObjectURL(pdfBlob);
                 const downloadLink = document.createElement('a');
