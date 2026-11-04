@@ -142,9 +142,9 @@
                             <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Kategori</th>
                             <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Nama Barang</th>
                             <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Payment</th>
-                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Modal</th>
-                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Terjual</th>
-                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Untung</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Modal (RM)</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Terjual (RM)</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Untung (RM)</th>
                             <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Notes</th>
                             <th id="thAction" class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold text-center hidden">Tindakan</th>
                         </tr>
@@ -595,7 +595,6 @@
                 thAction.classList.add('hidden');
             }
 
-            // FIX PAGING KOSONG: Jika tiada data, disable terus butang Seterusnya & Sebelumnya
             if (filteredTransactions.length === 0) {
                 let colspan = isAdminLoggedIn ? 10 : 9;
                 tbody.innerHTML = `<tr><td colspan="${colspan}" class="text-center py-6 text-gray-400">Tiada transaksi sepadan ditemui.</td></tr>`;
@@ -629,15 +628,16 @@
                 let terjualColor = isDarkMode ? "text-[#2ed573] font-bold" : "text-[#2D6A4F] font-bold";
                 let untungColor = isDarkMode ? "text-[#00d2d3] font-black" : "text-[#1B4332] font-black";
 
+                // TANPA 'RM' DI DALAM DATA KELUAR, TERJUAL, DAN UNTUNG
                 row.innerHTML = `
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center font-bold text-gray-400 text-[9px] sm:text-xs">${actualIndex}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 whitespace-nowrap text-[9px] sm:text-xs">${tx.tarikh}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-xl text-[8px] sm:text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 font-extrabold text-[10px] sm:text-sm">${tx.namaBarang}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4"><span class="text-[8px] sm:text-[10px] font-semibold bg-gray-500/10 px-1.5 py-0.5 sm:px-2 rounded-lg">${tx.paymentMethod}</span></td>
-                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${modalColor} text-[10px] sm:text-sm">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
-                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${terjualColor} text-[10px] sm:text-sm">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
-                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${untungColor} text-[10px] sm:text-sm">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${modalColor} text-[10px] sm:text-sm">${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${terjualColor} text-[10px] sm:text-sm">${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 ${untungColor} text-[10px] sm:text-sm">${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-gray-400 text-[9px] sm:text-xs">${tx.notes || '-'}</td>
                     ${actionTd}
                 `;
@@ -761,16 +761,16 @@
                         tx.kategori,
                         tx.namaBarang,
                         tx.paymentMethod,
-                        `RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}`,
-                        `RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}`,
-                        `RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}`,
+                        `${parseFloat(tx.amountKeluar || 0).toFixed(2)}`,
+                        `${parseFloat(tx.amountTerjual || 0).toFixed(2)}`,
+                        `${parseFloat(tx.untungBersih || 0).toFixed(2)}`,
                         tx.notes || '-'
                     ];
                 });
 
                 doc.autoTable({
                     startY: boxY + 29,
-                    head: [['Bil', 'Tarikh & Masa', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
+                    head: [['Bil', 'Tarikh & Masa', 'Kategori', 'Barang', 'Payment', 'Modal (RM)', 'Terjual (RM)', 'Untung (RM)', 'Notes']],
                     body: rows,
                     theme: 'grid',
                     headStyles: { fillColor: [45, 106, 79], textColor: [255, 255, 255], fontStyle: 'bold' },
@@ -793,7 +793,7 @@
                         
                         doc.setFontSize(8);
                         doc.setTextColor(100, 100, 100);
-                        doc.text(`Tarikh Cetak: ${nowStr}`, pageWidth - 14, pageHeight - 10, { align: 'right' });
+                        doc.text(`Tarikh Cetak: ${nowStr}`, pageWidth - 14, pageHeight - 10, { align: 'right' berdekatan });
                         doc.text(`Page ${data.pageNumber}`, pageWidth - 14, pageHeight - 6, { align: 'right' });
                     }
                 });
