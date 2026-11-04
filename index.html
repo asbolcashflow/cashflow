@@ -9,10 +9,40 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Animasi Strawberry Jatuh di Background */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.25; }
+            80% { opacity: 0.25; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        .falling-strawberry {
+            position: fixed;
+            top: -10vh;
+            font-size: 24px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 0;
+        }
     </style>
 </head>
-<body class="bg-[#FFF5F7] text-gray-800 p-4 md:p-6 min-h-screen">
-    <div class="max-w-7xl mx-auto">
+<body class="bg-[#FFF5F7] text-gray-800 p-4 md:p-6 min-h-screen relative overflow-x-hidden">
+
+    <!-- Efek Latar Belakang Strawberry Jatuh -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="falling-strawberry" style="left: 5%; animation-duration: 12s; animation-delay: 0s;">🍓</div>
+        <div class="falling-strawberry" style="left: 15%; animation-duration: 16s; animation-delay: 2s;">🍓</div>
+        <div class="falling-strawberry" style="left: 28%; animation-duration: 10s; animation-delay: 4s;">🍓</div>
+        <div class="falling-strawberry" style="left: 40%; animation-duration: 14s; animation-delay: 1s;">🍓</div>
+        <div class="falling-strawberry" style="left: 55%; animation-duration: 18s; animation-delay: 5s;">🍓</div>
+        <div class="falling-strawberry" style="left: 68%; animation-duration: 11s; animation-delay: 3s;">🍓</div>
+        <div class="falling-strawberry" style="left: 80%; animation-duration: 15s; animation-delay: 2s;">🍓</div>
+        <div class="falling-strawberry" style="left: 92%; animation-duration: 13s; animation-delay: 6s;">🍓</div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
         
         <!-- Header: Kiri (Logo Besar + Tajuk), Kanan (Jam Malaysia + Live Indicator) -->
         <div class="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
@@ -31,7 +61,6 @@
             <!-- Bahagian Kanan: Widget Jam Waktu Malaysia + Green Dot Animation -->
             <div class="bg-[#D8F3DC] px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-[270px] shrink-0">
                 <div class="flex items-center gap-2">
-                    <!-- Animasi Bulatan Hijau dengan Dim Shadow -->
                     <span class="relative flex h-2.5 w-2.5">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.3)]"></span>
@@ -45,7 +74,7 @@
             </div>
         </div>
         
-        <!-- Kad Ringkasan (Summary Cards - Dinamik Mengikut Filter) -->
+        <!-- Kad Ringkasan (Summary Cards) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="bg-gradient-to-br from-[#FFE3E8] to-[#FFCCD5] p-4 rounded-2xl shadow-sm border border-[#FFB3C6]">
                 <p class="text-[11px] font-bold text-[#9B2226] uppercase tracking-wider">Total Modal Keluar</p>
@@ -55,8 +84,9 @@
                 <p class="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">Total Terjual</p>
                 <p id="totalTerjual" class="text-2xl font-black text-[#2D6A4F] mt-1">RM 0.00</p>
             </div>
+            <!-- Ditukar kepada "Total Untung Bersih" -->
             <div class="bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] p-4 rounded-2xl shadow-sm text-white">
-                <p class="text-[11px] font-bold text-[#D8F3DC] uppercase tracking-wider">Jumlah Untung Bersih</p>
+                <p class="text-[11px] font-bold text-[#D8F3DC] uppercase tracking-wider">Total Untung Bersih</p>
                 <p id="jumlahUntung" class="text-2xl font-black text-[#95D5B2] mt-1">RM 0.00</p>
             </div>
         </div>
@@ -93,7 +123,8 @@
         <div class="bg-white rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
             <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#FFFAFA]">
                 <h2 class="text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
-                <button onclick="fetchData()" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center gap-1.5">
+                <!-- Butang Refresh Whole Page -->
+                <button onclick="refreshPage()" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center gap-1.5 cursor-pointer">
                     🔄 Muat Semula
                 </button>
             </div>
@@ -135,6 +166,11 @@
         let currentPage = 1;
         const rowsPerPage = 10;
 
+        // Fungsi Refresh Whole Page
+        function refreshPage() {
+            location.reload();
+        }
+
         // Jam Real-Time Malaysia
         function updateMalaysiaTime() {
             const options = { 
@@ -167,7 +203,7 @@
                     let dateB = new Date((b.tarikh || '').replace(' at ', ' '));
                     if (isNaN(dateA)) dateA = new Date(0);
                     if (isNaN(dateB)) dateB = new Date(0);
-                    return dateB - dateA; // Descending order
+                    return dateB - dateA;
                 });
 
                 populateCategoryDropdown();
@@ -219,7 +255,7 @@
                 // Filter Kategori
                 if (categoryFilter !== 'all' && tx.kategori !== categoryFilter) return false;
 
-                // Filter Payment (Diperbaiki supaya tidak sensitif huruf & ruang kosong)
+                // Filter Payment
                 if (paymentFilter !== 'all') {
                     let txPay = (tx.paymentMethod || '').trim().toLowerCase();
                     let filterPay = paymentFilter.trim().toLowerCase();
