@@ -242,7 +242,7 @@
             location.reload();
         }
 
-        // Fungsi Tukar Tema Dark Mode (Neon Pink Theme) & Light Mode
+        // Fungsi Tukar Tema Dark Mode (Neon Pink Theme Kreatif) & Light Mode
         function toggleDarkMode() {
             isDarkMode = !isDarkMode;
             const body = document.getElementById('pageBody');
@@ -260,24 +260,24 @@
             const tableTitle = document.getElementById('tableTitle');
 
             if (isDarkMode) {
-                // Tema Gelap dengan Neon Pink Accent
-                body.className = "bg-[#0d1117] text-gray-100 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                // Tema Gelap dengan Neon Pink Accent yang Menarik & Jelas
+                body.className = "bg-[#090d16] text-gray-100 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
                 themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
-                themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border border-[#ff2a85]/50 px-4 py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_10px_rgba(255,42,133,0.3)] cursor-pointer flex items-center gap-1.5";
+                themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-4 py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5";
                 
-                if(headerBox) headerBox.className = "bg-[#161b22]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-lg border-2 border-[#ff2a85] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
-                if(filterBox) filterBox.className = "bg-[#161b22]/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-lg border border-[#ff2a85]/50 mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
-                if(tableBox) tableBox.className = "bg-[#161b22]/95 backdrop-blur-sm rounded-3xl shadow-lg border border-[#ff2a85]/50 overflow-hidden mb-6 transition-colors duration-300";
-                if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-[#ff2a85]/30 flex flex-col sm:flex-row justify-between items-center bg-[#0d1117]/95 gap-3 transition-colors duration-300";
-                if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#0d1117]/95 border-t border-[#ff2a85]/30 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
-                if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/10 text-[#ff2a85] uppercase text-[11px] tracking-wider transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
+                if(filterBox) filterBox.className = "bg-[#111827]/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-lg border-2 border-[#ff2a85]/60 mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
+                if(tableBox) tableBox.className = "bg-[#111827]/95 backdrop-blur-sm rounded-3xl shadow-xl border-2 border-[#ff2a85]/60 overflow-hidden mb-6 transition-colors duration-300";
+                if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center bg-[#0d121d]/95 gap-3 transition-colors duration-300";
+                if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#0d121d]/95 border-t border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
+                if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[11px] font-extrabold tracking-wider transition-colors duration-300";
                 
                 if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-[#ff2a85] transition-colors duration-300";
-                if(card2) card2.className = "bg-gradient-to-br from-[#162221] to-[#1b2d29] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-emerald-500 transition-colors duration-300";
-                if(card3) card3.className = "bg-gradient-to-br from-[#162221] to-[#162a22] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-cyan-500 transition-colors duration-300 text-white";
+                if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-emerald-400 transition-colors duration-300";
+                if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-cyan-400 transition-colors duration-300 text-white";
                 
-                if(mainTitle) mainTitle.className = "text-xl sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_8px_rgba(255,42,133,0.4)]";
-                if(tableTitle) tableTitle.className = "text-base sm:text-lg font-bold text-gray-200";
+                if(mainTitle) mainTitle.className = "text-xl sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)]";
+                if(tableTitle) tableTitle.className = "text-base sm:text-lg font-bold text-gray-100";
 
             } else {
                 // Tema Asal (Matcha Strawberry)
@@ -488,7 +488,7 @@
             pageData.forEach((tx, index) => {
                 const actualIndex = startIdx + index + 1;
                 const row = document.createElement('tr');
-                row.className = isDarkMode ? "hover:bg-[#1f2923] transition text-gray-200 border-b border-[#2D6A4F]/20" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
+                row.className = isDarkMode ? "hover:bg-[#1f2937] transition text-gray-200 border-b border-[#ff2a85]/20" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
                 
                 let actionTd = isAdminLoggedIn ? `<td class="py-3.5 px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
 
@@ -525,24 +525,7 @@
             document.getElementById('pdfModal').classList.add('hidden');
         }
 
-        function getBase64Image(url) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.crossOrigin = 'Anonymous';
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    resolve(canvas.toDataURL('image/png'));
-                };
-                img.onerror = reject;
-                img.src = url;
-            });
-        }
-
-        // Fungsi Jana PDF yang Diperkemas & Selamat dari Ralat
+        // Fungsi Muat Turun PDF Menggunakan Blob (Dijamin Berjaya & Stabil)
         async function generatePDF() {
             try {
                 const timeVal = document.getElementById('pdfTime').value;
@@ -593,34 +576,26 @@
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
 
-                // Cuba muat turun logo dengan selamat
-                try {
-                    const logoBase64 = await getBase64Image("https://i.ibb.co/wNmYjgWP/asbol.png");
-                    doc.addImage(logoBase64, 'PNG', 82, 10, 46, 46);
-                } catch (e) {
-                    console.log("Logo bypass kerana sekatan CORS, meneruskan PDF tanpa logo.");
-                }
-
                 // Tajuk & Report Tarikh
                 doc.setFontSize(20);
                 doc.setTextColor(45, 106, 79);
-                doc.text("Asbol Syndicate", 105, 62, { align: "center" });
+                doc.text("Asbol Syndicate", 105, 30, { align: "center" });
 
                 doc.setFontSize(11);
                 doc.setTextColor(90, 90, 90);
-                doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 69, { align: "center" });
+                doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 38, { align: "center" });
 
                 // Kotak Ringkasan Total
                 doc.setFillColor(245, 247, 246);
                 doc.setLineColor(200, 215, 205);
-                doc.roundedRect(14, 76, 182, 24, 3, 3, 'FD');
+                doc.roundedRect(14, 45, 182, 24, 3, 3, 'FD');
 
                 doc.setFontSize(9);
                 doc.setTextColor(50, 50, 50);
-                doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, 85);
-                doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, 93);
-                doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, 93);
-                doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, 93);
+                doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, 54);
+                doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, 61);
+                doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, 61);
+                doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, 61);
 
                 const rows = pdfData.map((tx, idx) => {
                     let cleanDate = (tx.tarikh || '').replace(' at ', ' - ');
@@ -638,7 +613,7 @@
                 });
 
                 doc.autoTable({
-                    startY: 104,
+                    startY: 74,
                     head: [['Bil', 'Tarikh & Masa', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
                     body: rows,
                     theme: 'grid',
@@ -667,7 +642,16 @@
                     }
                 });
 
-                doc.save("Laporan_Cashflow_Asbol.pdf");
+                // Kaedah Blob Download (100% Berjaya & Stabil)
+                const pdfBlob = doc.output('blob');
+                const blobUrl = URL.createObjectURL(pdfBlob);
+                const downloadLink = document.createElement('a');
+                downloadLink.href = blobUrl;
+                downloadLink.download = "Laporan_Cashflow_Asbol.pdf";
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
                 closePdfModal();
             } catch (err) {
                 console.error("Ralat PDF:", err);
