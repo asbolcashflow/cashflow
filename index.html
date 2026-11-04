@@ -258,7 +258,7 @@
             const tableTitle = document.getElementById('tableTitle');
 
             if (isDarkMode) {
-                // Tema Gelap (Dark Mode)
+                // Tema Gelap (Dark Mode) - Sempadan diselaraskan kepada border (1px) seperti light mode
                 body.className = "bg-[#090d16] text-gray-100 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
                 
                 themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
@@ -275,13 +275,14 @@
                 if(tableContainer) tableContainer.className = "px-3 sm:px-6 py-3 sm:py-4 bg-[#0d121d]/95 border-t border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 transition-colors duration-300";
                 if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[9px] sm:text-[11px] font-extrabold tracking-wider transition-colors duration-300";
                 
-                if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-[#ff2a85] transition-colors duration-300";
+                // Kad Ringkasan (border diselaraskan supaya saiz dalaman sepadan dengan light mode)
+                if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border border-[#ff2a85] transition-colors duration-300";
                 if(labelCard1) labelCard1.className = "text-[9px] sm:text-[11px] font-bold text-[#ff6b81] uppercase tracking-tight sm:tracking-wider leading-tight";
 
-                if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-emerald-400 transition-colors duration-300";
+                if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border border-emerald-400 transition-colors duration-300";
                 if(labelCard2) labelCard2.className = "text-[9px] sm:text-[11px] font-bold text-[#2ed573] uppercase tracking-tight sm:tracking-wider leading-tight";
 
-                if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-cyan-400 transition-colors duration-300 text-white";
+                if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border border-cyan-400 transition-colors duration-300 text-white";
                 if(labelCard3) labelCard3.className = "text-[9px] sm:text-[11px] font-bold text-[#00d2d3] uppercase tracking-tight sm:tracking-wider leading-tight";
                 
                 if(mainTitle) mainTitle.className = "text-xl sm:text-3xl md:text-4xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)] leading-snug";
