@@ -3,51 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Cashflow Flip Barang</title>
-    <!-- Tailwind CSS untuk rekaan moden -->
+    <title>Dashboard Cashflow - Matcha Strawberry Theme 🍵🍓</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Matcha & Strawberry Colors */
+        .bg-matcha-dark { background-color: #3A5A40; }
+        .bg-matcha-light { background-color: #F4F7F2; }
+        .text-matcha { color: #3A5A40; }
+        .text-strawberry { color: #D90429; }
+        .border-matcha { border-color: #588157; }
+        .border-strawberry { border-color: #FF4D6D; }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans p-6">
+<body class="bg-matcha-light font-sans p-6">
     <div class="max-w-6xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">🚀 Dashboard Cashflow Flip Barang</h1>
+        <!-- Tajuk Utama -->
+        <div class="flex items-center justify-between mb-8 bg-white p-6 rounded-2xl shadow-sm border border-emerald-100">
+            <div>
+                <h1 class="text-3xl font-extrabold text-matcha tracking-tight">🍵🍓 Matcha Strawberry Cashflow</h1>
+                <p class="text-sm text-gray-500 mt-1">Sistem Tracker Bisnes Flip Barang (Real-Time)</p>
+            </div>
+            <button onclick="fetchData()" class="bg-[#588157] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#3A5A40] transition shadow-md flex items-center gap-2">
+                🔄 Muat Semula
+            </button>
+        </div>
         
         <!-- Kad Ringkasan (Summary Cards) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
-                <p class="text-sm text-gray-500 font-medium">Total Modal Keluar</p>
-                <p id="totalKeluar" class="text-2xl font-bold text-red-600 mt-2">RM 0.00</p>
+            <!-- Modal Keluar (Strawberry Theme) -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-[#FF4D6D] relative overflow-hidden">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Modal Keluar</p>
+                <p id="totalKeluar" class="text-3xl font-black text-[#D90429] mt-2">RM 0.00</p>
+                <span class="absolute right-4 bottom-4 text-3xl opacity-20">🍓</span>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
-                <p class="text-sm text-gray-500 font-medium">Total Terjual (Pendapatan)</p>
-                <p id="totalTerjual" class="text-2xl font-bold text-blue-600 mt-2">RM 0.00</p>
+            <!-- Total Terjual (Matcha Light Theme) -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-[#A3B18A] relative overflow-hidden">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Terjual (Pendapatan)</p>
+                <p id="totalTerjual" class="text-3xl font-black text-[#588157] mt-2">RM 0.00</p>
+                <span class="absolute right-4 bottom-4 text-3xl opacity-20">💰</span>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
-                <p class="text-sm text-gray-500 font-medium">Jumlah Untung Bersih</p>
-                <p id="jumlahUntung" class="text-2xl font-bold text-green-600 mt-2">RM 0.00</p>
+            <!-- Jumlah Untung Bersih (Matcha Dark Theme) -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-[#3A5A40] relative overflow-hidden">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Jumlah Untung Bersih</p>
+                <p id="jumlahUntung" class="text-3xl font-black text-[#3A5A40] mt-2">RM 0.00</p>
+                <span class="absolute right-4 bottom-4 text-3xl opacity-20">🍵</span>
             </div>
         </div>
 
         <!-- Jadual Senarai Transaksi -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-gray-800">Senarai Transaksi Terkini</h2>
-                <button onclick="fetchData()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">Muat Semula</button>
+        <div class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
+            <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                <h2 class="text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
+                <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-medium">Live Sync Active</span>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-gray-50 text-gray-600 uppercase text-xs tracking-wider">
-                            <th class="py-3 px-6">Tarikh</th>
-                            <th class="py-3 px-6">Kategori</th>
-                            <th class="py-3 px-6">Nama Barang</th>
-                            <th class="py-3 px-6">Payment</th>
-                            <th class="py-3 px-6">Modal (RM)</th>
-                            <th class="py-3 px-6">Terjual (RM)</th>
-                            <th class="py-3 px-6">Untung (RM)</th>
-                            <th class="py-3 px-6">Notes</th>
+                        <tr class="bg-emerald-50/40 text-gray-600 uppercase text-xs tracking-wider">
+                            <th class="py-3 px-6 font-semibold">Tarikh</th>
+                            <th class="py-3 px-6 font-semibold">Kategori</th>
+                            <th class="py-3 px-6 font-semibold">Nama Barang</th>
+                            <th class="py-3 px-6 font-semibold">Payment</th>
+                            <th class="py-3 px-6 font-semibold">Modal (RM)</th>
+                            <th class="py-3 px-6 font-semibold">Terjual (RM)</th>
+                            <th class="py-3 px-6 font-semibold">Untung (RM)</th>
+                            <th class="py-3 px-6 font-semibold">Notes</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y divide-gray-200 text-sm text-gray-700">
+                    <tbody id="tableBody" class="divide-y divide-gray-100 text-sm text-gray-700">
                         <!-- Data akan dimasukkan di sini secara automatik -->
                     </tbody>
                 </table>
@@ -74,21 +98,22 @@
                 tbody.innerHTML = '';
 
                 if (data.transactions.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-gray-400">Tiada transaksi lagi.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-gray-400">Tiada transaksi lagi.</td></tr>`;
                     return;
                 }
 
                 data.transactions.forEach(tx => {
                     const row = document.createElement('tr');
+                    row.className = "hover:bg-emerald-50/20 transition";
                     row.innerHTML = `
-                        <td class="py-3 px-6 whitespace-nowrap">${tx.tarikh}</td>
-                        <td class="py-3 px-6"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">${tx.kategori}</span></td>
-                        <td class="py-3 px-6 font-medium text-gray-900">${tx.namaBarang}</td>
-                        <td class="py-3 px-6">${tx.paymentMethod}</td>
-                        <td class="py-3 px-6 text-red-600 font-semibold">${tx.amountKeluar}</td>
-                        <td class="py-3 px-6 text-blue-600 font-semibold">${tx.amountTerjual}</td>
-                        <td class="py-3 px-6 text-green-600 font-bold">${tx.untungBersih}</td>
-                        <td class="py-3 px-6 text-gray-500">${tx.notes || '-'}</td>
+                        <td class="py-3.5 px-6 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
+                        <td class="py-3.5 px-6"><span class="bg-[#F4F7F2] text-[#3A5A40] border border-[#A3B18A]/40 px-2.5 py-1 rounded-lg text-xs font-semibold">${tx.kategori}</span></td>
+                        <td class="py-3.5 px-6 font-bold text-gray-800">${tx.namaBarang}</td>
+                        <td class="py-3.5 px-6"><span class="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-0.5 rounded">${tx.paymentMethod}</span></td>
+                        <td class="py-3.5 px-6 text-[#D90429] font-semibold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                        <td class="py-3.5 px-6 text-[#588157] font-semibold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                        <td class="py-3.5 px-6 text-[#3A5A40] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                        <td class="py-3.5 px-6 text-gray-400 text-xs">${tx.notes || '-'}</td>
                     `;
                     tbody.appendChild(row);
                 });
@@ -100,7 +125,7 @@
         // Panggil fungsi semasa mula-mula buka laman web
         fetchData();
 
-        // Auto-refresh setiap 30 saat supaya sentiasa real-time
+        // Auto-refresh setiap 30 saat
         setInterval(fetchData, 30000);
     </script>
 </body>
