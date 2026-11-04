@@ -46,7 +46,7 @@
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Header: Atas Kanan (Admin Login + Jam Malaysia), Kiri (Logo + Tajuk) -->
+        <!-- Header: Kiri (Logo + Tajuk), Kanan (Admin Login di atas Jam Malaysia) -->
         <div class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
             
             <!-- Bahagian Kiri: Logo + Tajuk -->
@@ -60,10 +60,10 @@
                 </div>
             </div>
 
-            <!-- Bahagian Kanan: Admin Login & Jam Waktu Malaysia -->
-            <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto justify-end">
-                <!-- Butang Admin Login di Atas Kanan -->
-                <button id="adminBtn" onclick="toggleAdminModal()" class="w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-3 sm:py-2 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
+            <!-- Bahagian Kanan: Admin Login di atas Jam Waktu Malaysia -->
+            <div class="flex flex-col items-end gap-2 w-full lg:w-auto">
+                <!-- Butang Admin Login -->
+                <button id="adminBtn" onclick="toggleAdminModal()" class="w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
                     🔐 Admin Login
                 </button>
 
@@ -137,8 +137,9 @@
         <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
             <div class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3">
                 <h2 class="text-base sm:text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
+                <!-- Teks Muat Semula ditukar kepada Refresh -->
                 <button onclick="refreshPage()" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
-                    🔄 Muat Semula
+                    🔄 Refresh
                 </button>
             </div>
             <div class="overflow-x-auto">
@@ -239,7 +240,7 @@
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
                 document.getElementById('adminBtn').innerText = "🔐 Admin Login";
-                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-3 sm:py-2 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm";
+                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm";
                 alert("Anda telah Log Out dari Mod Admin.");
                 renderTable();
                 return;
@@ -258,7 +259,7 @@
                 document.getElementById('adminPass').value = "";
                 
                 document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
-                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-red-100 text-red-700 px-4 py-3 sm:py-2 rounded-xl font-bold hover:bg-red-200 transition shadow-sm";
+                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-red-100 text-red-700 px-4 py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm";
                 
                 alert("Log Masuk Admin Berjaya!");
                 renderTable();
@@ -332,7 +333,6 @@
         function populateCategoryDropdowns() {
             const categories = [...new Set(allTransactions.map(t => t.kategori))].filter(Boolean);
             
-            // Dashboard Filter
             const catSelect = document.getElementById('filterCategory');
             const currentVal = catSelect.value;
             let html = '<option value="all">Semua Kategori</option>';
@@ -340,7 +340,6 @@
             catSelect.innerHTML = html;
             catSelect.value = currentVal;
 
-            // PDF Modal Filter
             const pdfCatSelect = document.getElementById('pdfCategory');
             pdfCatSelect.innerHTML = html;
         }
@@ -452,7 +451,6 @@
             renderTable();
         }
 
-        // Fungsi Modal PDF
         function openPdfModal() {
             document.getElementById('pdfModal').classList.remove('hidden');
         }
@@ -461,7 +459,6 @@
             document.getElementById('pdfModal').classList.add('hidden');
         }
 
-        // Helper tukar imej ke Base64 untuk jsPDF
         function getBase64Image(url) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
@@ -479,7 +476,6 @@
             });
         }
 
-        // Jana PDF mengikut Filter yang dipilih
         async function generatePDF() {
             const timeVal = document.getElementById('pdfTime').value;
             const catVal = document.getElementById('pdfCategory').value;
@@ -509,10 +505,18 @@
                 return;
             }
 
+            // Kira total untuk PDF
+            let pdfKeluar = 0, pdfTerjual = 0, pdfUntung = 0;
+            pdfData.forEach(tx => {
+                pdfKeluar += parseFloat(tx.amountKeluar || 0);
+                pdfTerjual += parseFloat(tx.amountTerjual || 0);
+                pdfUntung += parseFloat(tx.untungBersih || 0);
+            });
+
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Masukkan Logo Asbol di tengah atas
+            // Logo Asbol
             try {
                 const logoBase64 = await getBase64Image("https://i.ibb.co/wNmYjgWP/asbol.png");
                 doc.addImage(logoBase64, 'PNG', 92, 10, 26, 26);
@@ -520,16 +524,21 @@
                 console.log("Gagal muat logo untuk PDF");
             }
 
-            // Tajuk Asbol Syndicate di bawah logo
+            // Tajuk & Syndicate
             doc.setFontSize(16);
-            doc.setTextColor(45, 106, 79); // Matcha Dark
-            doc.text("Asbol Syndicate", 105, 42, { align: "center" });
+            doc.setTextColor(45, 106, 79);
+            doc.text("Asbol Syndicate", 105, 40, { align: "center" });
 
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
-            doc.text("Laporan Cashflow Flip Barang", 105, 49, { align: "center" });
+            doc.text("Laporan Cashflow Flip Barang", 105, 46, { align: "center" });
 
-            // Sediakan baris jadual untuk autoTable (menyokong multi-page automatik)
+            // Papar Total & Jumlah Transaksi dalam PDF
+            doc.setFontSize(9);
+            doc.setTextColor(50, 50, 50);
+            doc.text(`Jumlah Transaksi: ${pdfData.length}`, 14, 54);
+            doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}  |  Total Terjual: RM ${pdfTerjual.toFixed(2)}  |  Total Untung Bersih: RM ${pdfUntung.toFixed(2)}`, 14, 60);
+
             const rows = pdfData.map((tx, idx) => [
                 idx + 1,
                 tx.tarikh,
@@ -543,12 +552,24 @@
             ]);
 
             doc.autoTable({
-                startY: 58,
+                startY: 65,
                 head: [['Bil', 'Tarikh', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
                 body: rows,
                 theme: 'grid',
                 headStyles: { fillColor: [45, 106, 79] },
-                styles: { fontSize: 8, cellPadding: 2 }
+                styles: { fontSize: 8, cellPadding: 2 },
+                didDrawPage: function (data) {
+                    let pageWidth = doc.internal.pageSize.width;
+                    let pageHeight = doc.internal.pageSize.height;
+                    let nowStr = new Date().toLocaleString('ms-MY', { timeZone: 'Asia/Kuala_Lumpur' });
+                    
+                    doc.setFontSize(8);
+                    doc.setTextColor(100, 100, 100);
+                    // Hujung bawah kanan: Tarikh & Waktu
+                    doc.text(`Tarikh/Waktu: ${nowStr}`, pageWidth - 14, pageHeight - 10, { align: 'right' });
+                    // Bawah daripada itu: Page number
+                    doc.text(`Page ${data.pageNumber}`, pageWidth - 14, pageHeight - 6, { align: 'right' });
+                }
             });
 
             doc.save("Laporan_Cashflow_Asbol.pdf");
