@@ -14,8 +14,10 @@
 <body class="bg-[#FFF5F7] text-gray-800 p-4 md:p-6 min-h-screen">
     <div class="max-w-7xl mx-auto">
         
-        <!-- Header & Live Clock Malaysia (Fixed Size Box) -->
+        <!-- Header: Kiri (Tajuk), Tengah (Custom Logo Asbol), Kanan (Jam Malaysia) -->
         <div class="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            
+            <!-- Bahagian Kiri: Tajuk -->
             <div>
                 <div class="flex items-center gap-2">
                     <span class="text-2xl">🍵🍓</span>
@@ -24,7 +26,12 @@
                 <p class="text-xs text-gray-500 mt-1 font-medium">Sistem Tracker Bisnes Real-Time & Filter</p>
             </div>
             
-            <!-- Widget Jam Waktu Malaysia (Fixed Size w-[270px]) -->
+            <!-- Bahagian Tengah: Custom Logo Anda -->
+            <div class="flex items-center justify-center">
+                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-14 md:h-16 object-contain rounded-2xl shadow-sm border border-[#FFCCD5] p-1 bg-white" onerror="this.style.display='none'">
+            </div>
+
+            <!-- Bahagian Kanan: Widget Jam Waktu Malaysia (Fixed Size w-[270px]) -->
             <div class="bg-[#D8F3DC] px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-[270px] shrink-0">
                 <span class="text-xl">🇲🇾</span>
                 <div>
@@ -165,7 +172,6 @@
             const categorySelect = document.getElementById('filterCategory');
             const currentSelected = categorySelect.value;
             
-            // Ambil kategori unik
             const categories = [...new Set(allTransactions.map(t => t.kategori))].filter(Boolean);
             
             let optionsHtml = '<option value="all">Semua Kategori</option>';
@@ -185,12 +191,10 @@
             const now = new Date();
 
             filteredTransactions = allTransactions.filter(tx => {
-                // Parse Tarikh
                 let cleanDateStr = (tx.tarikh || '').replace(' at ', ' ');
                 let txDate = new Date(cleanDateStr);
-                if (isNaN(txDate)) txDate = new Date(); // Fallback jika format berbeza
+                if (isNaN(txDate)) txDate = new Date();
 
-                // Filter Masa
                 if (timeFilter === 'week') {
                     const diffTime = Math.abs(now - txDate);
                     const diffDays = diffTime / (1000 * 60 * 60 * 24);
@@ -201,10 +205,7 @@
                     if (txDate.getFullYear() !== now.getFullYear()) return false;
                 }
 
-                // Filter Kategori
                 if (categoryFilter !== 'all' && tx.kategori !== categoryFilter) return false;
-
-                // Filter Payment Method
                 if (paymentFilter !== 'all' && tx.paymentMethod !== paymentFilter) return false;
 
                 return true;
@@ -235,7 +236,7 @@
             const pageData = filteredTransactions.slice(startIdx, endIdx);
 
             pageData.forEach((tx, index) => {
-                const actualIndex = startIdx + index + 1; // Nombor Bilangan urutan
+                const actualIndex = startIdx + index + 1;
                 const row = document.createElement('tr');
                 row.className = "hover:bg-[#FFF5F7]/50 transition";
                 row.innerHTML = `
@@ -252,13 +253,11 @@
                 tbody.appendChild(row);
             });
 
-            // Kemas kini status Pagination buttons
             document.getElementById('pageIndicator').innerText = `Halaman ${currentPage} dari ${totalPages}`;
             document.getElementById('prevBtn').disabled = currentPage === 1;
             document.getElementById('nextBtn').disabled = currentPage === totalPages;
         }
 
-        // Tukar Halaman Pagination
         function changePage(direction) {
             currentPage += direction;
             renderTable();
