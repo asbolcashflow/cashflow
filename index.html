@@ -46,7 +46,7 @@
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Tombol Tetapan di Penjuru Atas Kanan (Luar Kotak Header) -->
+        <!-- Tombol Tetapan di Penjuru Atas Kanan -->
         <div class="flex justify-end items-center gap-2 mb-3">
             <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm">
                 🌙 <span>Dark Mode</span>
@@ -56,7 +56,7 @@
             </button>
         </div>
 
-        <!-- 1. MAIN DASHBOARD: Header (Logo, Tajuk & Jam Malaysia) -->
+        <!-- 1. MAIN DASHBOARD: Header -->
         <div id="headerBox" class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300">
             <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 w-full md:w-auto text-center sm:text-left">
                 <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-28 sm:h-36 md:h-40 w-auto object-contain shrink-0 drop-shadow-lg mx-auto sm:mx-0" onerror="this.style.display='none'">
@@ -117,7 +117,7 @@
             </div>
         </div>
 
-        <!-- 3. SEMUA TOTAL (Summary Cards) - Sebaris di Mobile dengan Text Fix -->
+        <!-- 3. SEMUA TOTAL (Summary Cards) -->
         <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
                 <p class="text-[8px] sm:text-[11px] font-bold text-[#9B2226] uppercase tracking-tighter sm:tracking-wider leading-tight" id="labelCard1">Total Modal Keluar</p>
@@ -172,7 +172,7 @@
         </div>
     </div>
 
-    <!-- MODAL ADMIN LOGIN (Diperbaiki dengan teks hitam jelas) -->
+    <!-- MODAL ADMIN LOGIN -->
     <div id="adminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-xs border border-[#FFCCD5]">
             <h3 class="text-lg font-bold text-[#2D6A4F] mb-4 text-center">🔐 Admin Login</h3>
@@ -189,6 +189,48 @@
                     <button onclick="handleAdminLogin()" class="flex-1 bg-[#2D6A4F] text-white py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition cursor-pointer">Login</button>
                     <button onclick="toggleAdminModal()" class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-xl text-xs font-bold hover:bg-gray-300 transition cursor-pointer">Batal</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT TRANSAKSI (BARU) -->
+    <div id="editModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-md border border-[#FFCCD5]">
+            <h3 class="text-lg font-bold text-[#2D6A4F] mb-3 text-center">✏️ Edit Transaksi</h3>
+            <input type="hidden" id="editRowIndex">
+            <div class="space-y-3 mb-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Nama Barang:</label>
+                    <input type="text" id="editNamaBarang" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-black font-semibold text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Kategori:</label>
+                        <input type="text" id="editKategori" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-black font-semibold text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Payment Method:</label>
+                        <input type="text" id="editPayment" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-black font-semibold text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Modal Keluar (RM):</label>
+                        <input type="number" step="0.01" id="editAmountKeluar" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-black font-semibold text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Harga Terjual (RM):</label>
+                        <input type="number" step="0.01" id="editAmountTerjual" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-black font-semibold text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Notes:</label>
+                    <input type="text" id="editNotes" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-black font-semibold text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="submitEditTransaction()" class="flex-1 bg-[#2D6A4F] text-white py-2.5 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition cursor-pointer">Simpan Perubahan</button>
+                <button onclick="closeEditModal()" class="flex-1 bg-gray-200 text-gray-700 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-300 transition cursor-pointer">Batal</button>
             </div>
         </div>
     </div>
@@ -236,7 +278,6 @@
             location.reload();
         }
 
-        // Fungsi Tukar Tema Dark Mode & Light Mode (Sentiasa bermula dalam Light Mode)
         function toggleDarkMode() {
             isDarkMode = !isDarkMode;
             const body = document.getElementById('pageBody');
@@ -258,9 +299,7 @@
             const tableTitle = document.getElementById('tableTitle');
 
             if (isDarkMode) {
-                // Tema Gelap (Dark Mode)
                 body.className = "bg-[#090d16] text-gray-100 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
-                
                 themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
                 themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3.5 py-2 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 
@@ -288,9 +327,7 @@
                 if(tableTitle) tableTitle.className = "text-sm sm:text-lg font-bold text-gray-100";
 
             } else {
-                // Tema Asal (Light Mode)
                 body.className = "bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
-                
                 themeBtn.innerHTML = "🌙 <span>Dark Mode</span>";
                 themeBtn.className = "text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 
@@ -350,6 +387,67 @@
                 renderTable();
             } else {
                 alert("UserID atau Password salah!");
+            }
+        }
+
+        // --- FUNGSI EDIT TRANSAKSI ---
+        function openEditModal(txStr) {
+            const tx = JSON.parse(decodeURIComponent(txStr));
+            document.getElementById('editRowIndex').value = tx.rowIndex;
+            document.getElementById('editNamaBarang').value = tx.namaBarang || '';
+            document.getElementById('editKategori').value = tx.kategori || '';
+            document.getElementById('editPayment').value = tx.paymentMethod || '';
+            document.getElementById('editAmountKeluar').value = tx.amountKeluar || 0;
+            document.getElementById('editAmountTerjual').value = tx.amountTerjual || 0;
+            document.getElementById('editNotes').value = tx.notes || '';
+            
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+
+        async function submitEditTransaction() {
+            const rowIndex = document.getElementById('editRowIndex').value;
+            const namaBarang = document.getElementById('editNamaBarang').value.trim();
+            const kategori = document.getElementById('editKategori').value.trim();
+            const paymentMethod = document.getElementById('editPayment').value.trim();
+            const amountKeluar = parseFloat(document.getElementById('editAmountKeluar').value) || 0;
+            const amountTerjual = parseFloat(document.getElementById('editAmountTerjual').value) || 0;
+            const notes = document.getElementById('editNotes').value.trim();
+
+            if (!namaBarang) {
+                alert("Sila masukkan nama barang.");
+                return;
+            }
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: "update",
+                        rowIndex: rowIndex,
+                        namaBarang: namaBarang,
+                        kategori: kategori,
+                        paymentMethod: paymentMethod,
+                        amountKeluar: amountKeluar,
+                        amountTerjual: amountTerjual,
+                        notes: notes
+                    })
+                });
+                const result = await response.json();
+                if (result.status === "success") {
+                    alert("Transaksi berjaya dikemas kini!");
+                    closeEditModal();
+                    fetchData();
+                } else {
+                    alert("Ralat mengemas kini data: " + result.message);
+                }
+            } catch (error) {
+                console.error("Ralat rangkaian:", error);
+                alert("Gagal berhubung dengan pelayan.");
             }
         }
 
@@ -524,7 +622,13 @@
                 const row = document.createElement('tr');
                 row.className = isDarkMode ? "hover:bg-[#1f2937] transition text-gray-200 border-b border-[#ff2a85]/20" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
                 
-                let actionTd = isAdminLoggedIn ? `<td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[9px] sm:text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
+                // Butang Edit & Padam untuk Admin
+                let txJson = encodeURIComponent(JSON.stringify(tx));
+                let actionTd = isAdminLoggedIn ? `
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center whitespace-nowrap">
+                        <button onclick="openEditModal('${txJson}')" class="bg-blue-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[9px] sm:text-xs font-bold hover:bg-blue-600 transition cursor-pointer mr-1">Edit</button>
+                        <button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[9px] sm:text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button>
+                    </td>` : '';
 
                 let modalColor = isDarkMode ? "text-[#ff6b81] font-bold" : "text-[#AE2012] font-bold";
                 let terjualColor = isDarkMode ? "text-[#2ed573] font-bold" : "text-[#2D6A4F] font-bold";
