@@ -62,12 +62,10 @@
 
             <!-- Bahagian Kanan: Admin Login di atas Jam Waktu Malaysia -->
             <div class="flex flex-col items-end gap-2 w-full lg:w-auto">
-                <!-- Butang Admin Login -->
                 <button id="adminBtn" onclick="toggleAdminModal()" class="w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
                     🔐 Admin Login
                 </button>
 
-                <!-- Jam Waktu Malaysia + Live Indicator -->
                 <div class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="relative flex h-2.5 w-2.5">
@@ -137,7 +135,6 @@
         <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
             <div class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3">
                 <h2 class="text-base sm:text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
-                <!-- Teks Muat Semula ditukar kepada Refresh -->
                 <button onclick="refreshPage()" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
                     🔄 Refresh
                 </button>
@@ -505,6 +502,17 @@
                 return;
             }
 
+            // Dapatkan tarikh mula dan akhir untuk paparan laporan
+            let dates = pdfData.map(tx => new Date((tx.tarikh || '').replace(' at ', ' '))).filter(d => !isNaN(d));
+            let startDateStr = "-";
+            let endDateStr = "-";
+            if (dates.length > 0) {
+                let minDate = new Date(Math.min(...dates));
+                let maxDate = new Date(Math.max(...dates));
+                startDateStr = minDate.toLocaleDateString('ms-MY', { day: '2-digit', month: 'short', year: 'numeric' });
+                endDateStr = maxDate.toLocaleDateString('ms-MY', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+
             // Kira total untuk PDF
             let pdfKeluar = 0, pdfTerjual = 0, pdfUntung = 0;
             pdfData.forEach(tx => {
@@ -516,48 +524,68 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Logo Asbol
+            // Logo Asbol Lebih Besar di Tengah Atas
             try {
                 const logoBase64 = await getBase64Image("https://i.ibb.co/wNmYjgWP/asbol.png");
-                doc.addImage(logoBase64, 'PNG', 92, 10, 26, 26);
+                doc.addImage(logoBase64, 'PNG', 85, 10, 40, 40);
             } catch (e) {
                 console.log("Gagal muat logo untuk PDF");
             }
 
-            // Tajuk & Syndicate
-            doc.setFontSize(16);
+            // Tajuk Asbol Syndicate & Report Tarikh Dinamik
+            doc.setFontSize(18);
             doc.setTextColor(45, 106, 79);
-            doc.text("Asbol Syndicate", 105, 40, { align: "center" });
+            doc.text("Asbol Syndicate", 105, 55, { align: "center" });
 
-            doc.setFontSize(10);
-            doc.setTextColor(100, 100, 100);
-            doc.text("Laporan Cashflow Flip Barang", 105, 46, { align: "center" });
+            doc.setFontSize(11);
+            doc.setTextColor(80, 80, 80);
+            doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 62, { align: "center" });
 
-            // Papar Total & Jumlah Transaksi dalam PDF
+            // Design Kotak Summary / Total yang Menarik
+            doc.setFillColor(248, 249, 250);
+            doc.setLineColor(218, 226, 229);
+            doc.roundedRect(14, 68, 182, 22, 3, 3, 'FD');
+
             doc.setFontSize(9);
-            doc.setTextColor(50, 50, 50);
-            doc.text(`Jumlah Transaksi: ${pdfData.length}`, 14, 54);
-            doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}  |  Total Terjual: RM ${pdfTerjual.toFixed(2)}  |  Total Untung Bersih: RM ${pdfUntung.toFixed(2)}`, 14, 60);
+            doc.setTextColor(60, 60, 60);
+            doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, 77);
+            doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, 84);
+            doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, 84);
+            doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, 84);
 
-            const rows = pdfData.map((tx, idx) => [
-                idx + 1,
-                tx.tarikh,
-                tx.kategori,
-                tx.namaBarang,
-                tx.paymentMethod,
-                `RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}`,
-                `RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}`,
-                `RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}`,
-                tx.notes || '-'
-            ]);
+            const rows = pdfData.map((tx, idx) => {
+                let cleanDate = (tx.tarikh || '').replace(' at ', ' - ');
+                return [
+                    idx + 1,
+                    cleanDate,
+                    tx.kategori,
+                    tx.namaBarang,
+                    tx.paymentMethod,
+                    `RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}`,
+                    `RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}`,
+                    `RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}`,
+                    tx.notes || '-'
+                ];
+            });
 
             doc.autoTable({
-                startY: 65,
-                head: [['Bil', 'Tarikh', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
+                startY: 95,
+                head: [['Bil', 'Tarikh & Masa', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
                 body: rows,
                 theme: 'grid',
-                headStyles: { fillColor: [45, 106, 79] },
-                styles: { fontSize: 8, cellPadding: 2 },
+                headStyles: { fillColor: [45, 106, 79], textColor: [255, 255, 255], fontStyle: 'bold' },
+                styles: { fontSize: 8, cellPadding: 2.5, overflow: 'linebreak' },
+                columnStyles: {
+                    0: { cellWidth: 10, halign: 'center' },
+                    1: { cellWidth: 32 }, // Lebar tarikh & masa diluaskan supaya jelas
+                    2: { cellWidth: 22 }, // Kategori diasingkan dengan betul
+                    3: { cellWidth: 25 },
+                    4: { cellWidth: 16, halign: 'center' },
+                    5: { cellWidth: 22, halign: 'right' },
+                    6: { cellWidth: 22, halign: 'right' },
+                    7: { cellWidth: 22, halign: 'right' },
+                    8: { cellWidth: 'auto' }
+                },
                 didDrawPage: function (data) {
                     let pageWidth = doc.internal.pageSize.width;
                     let pageHeight = doc.internal.pageSize.height;
@@ -565,8 +593,8 @@
                     
                     doc.setFontSize(8);
                     doc.setTextColor(100, 100, 100);
-                    // Hujung bawah kanan: Tarikh & Waktu
-                    doc.text(`Tarikh/Waktu: ${nowStr}`, pageWidth - 14, pageHeight - 10, { align: 'right' });
+                    // Hujung bawah kanan: Tarikh & Waktu Cetak
+                    doc.text(`Tarikh Cetak: ${nowStr}`, pageWidth - 14, pageHeight - 10, { align: 'right' });
                     // Bawah daripada itu: Page number
                     doc.text(`Page ${data.pageNumber}`, pageWidth - 14, pageHeight - 6, { align: 'right' });
                 }
