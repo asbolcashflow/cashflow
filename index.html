@@ -525,7 +525,24 @@
             document.getElementById('pdfModal').classList.add('hidden');
         }
 
-        // Fungsi Muat Turun PDF Menggunakan Blob (Dijamin Berjaya & Stabil)
+        // Fungsi Ambil Imej Logo sebagai Base64 dengan Fetch API (Mengelakkan Isu CORS)
+        async function getBase64ImageFromUrl(imageUrl) {
+            try {
+                const response = await fetch(imageUrl, { mode: 'cors' });
+                const blob = await response.blob();
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            } catch (error) {
+                console.warn("Gagal memuatkan logo:", error);
+                return null;
+            }
+        }
+
+        // Fungsi Muat Turun PDF yang Dilengkapi Logo & Blob Stabil
         async function generatePDF() {
             try {
                 const timeVal = document.getElementById('pdfTime').value;
@@ -576,26 +593,33 @@
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
 
+                // Muat turun logo Asbol secara asynchronous
+                const logoBase64 = await getBase64ImageFromUrl("https://i.ibb.co/wNmYjgWP/asbol.png");
+                if (logoBase64) {
+                    doc.addImage(logoBase64, 'PNG', 85, 10, 40, 40);
+                }
+
                 // Tajuk & Report Tarikh
                 doc.setFontSize(20);
                 doc.setTextColor(45, 106, 79);
-                doc.text("Asbol Syndicate", 105, 30, { align: "center" });
+                doc.text("Asbol Syndicate", 105, logoBase64 ? 55 : 30, { align: "center" });
 
                 doc.setFontSize(11);
                 doc.setTextColor(90, 90, 90);
-                doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 38, { align: "center" });
+                doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, logoBase64 ? 62 : 38, { align: "center" });
 
-                // Kotak Ringkasan Total (Diperbetulkan menggunakan setDrawColor)
+                // Kotak Ringkasan Total
+                let boxY = logoBase64 ? 68 : 45;
                 doc.setFillColor(245, 247, 246);
                 doc.setDrawColor(200, 215, 205);
-                doc.roundedRect(14, 45, 182, 24, 3, 3, 'FD');
+                doc.roundedRect(14, boxY, 182, 24, 3, 3, 'FD');
 
                 doc.setFontSize(9);
                 doc.setTextColor(50, 50, 50);
-                doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, 54);
-                doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, 61);
-                doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, 61);
-                doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, 61);
+                doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, boxY + 9);
+                doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, boxY + 16);
+                doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, boxY + 16);
+                doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, boxY + 16);
 
                 const rows = pdfData.map((tx, idx) => {
                     let cleanDate = (tx.tarikh || '').replace(' at ', ' - ');
@@ -613,7 +637,7 @@
                 });
 
                 doc.autoTable({
-                    startY: 74,
+                    startY: boxY + 29,
                     head: [['Bil', 'Tarikh & Masa', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
                     body: rows,
                     theme: 'grid',
