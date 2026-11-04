@@ -31,7 +31,7 @@
         }
     </style>
 </head>
-<body id="pageBody" class="bg-[#FFF5F7] text-gray-800 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300">
+<body id="pageBody" class="bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300">
 
     <!-- Efek Latar Belakang Strawberry Jatuh -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -55,7 +55,7 @@
                 <div>
                     <div class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="text-xl sm:text-2xl">🍵🍓</span>
-                        <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
+                        <h1 class="text-lg sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
                     </div>
                 </div>
             </div>
@@ -64,11 +64,11 @@
             <div class="flex flex-col items-end gap-2 w-full lg:w-auto">
                 <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
                     <!-- Suis Dark/Light Theme yang Interaktif -->
-                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5">
+                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5">
                         🌙 <span>Dark Mode</span>
                     </button>
                     <!-- Butang Admin Login -->
-                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer">
+                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer">
                         🔐 Admin Login
                     </button>
                 </div>
@@ -139,7 +139,7 @@
             </div>
         </div>
 
-        <!-- Jadual Senarai Transaksi -->
+        <!-- Jadual Senarai Transaksi (Dioptimumkan untuk Mobile agar lebih padat) -->
         <div id="tableBox" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300">
             <div id="tableHeader" class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
                 <h2 class="text-base sm:text-lg font-bold text-gray-700" id="tableTitle">Senarai Transaksi Terkini</h2>
@@ -148,22 +148,22 @@
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-[700px]">
+                <table class="w-full text-left border-collapse min-w-[650px]">
                     <thead>
-                        <tr id="tableHeadTr" class="bg-[#FFF0F3] text-gray-600 uppercase text-[11px] tracking-wider transition-colors duration-300">
-                            <th class="py-3.5 px-4 font-bold text-center">Bil</th>
-                            <th class="py-3.5 px-4 font-bold">Tarikh</th>
-                            <th class="py-3.5 px-4 font-bold">Kategori</th>
-                            <th class="py-3.5 px-4 font-bold">Nama Barang</th>
-                            <th class="py-3.5 px-4 font-bold">Payment</th>
-                            <th class="py-3.5 px-4 font-bold">Modal</th>
-                            <th class="py-3.5 px-4 font-bold">Terjual</th>
-                            <th class="py-3.5 px-4 font-bold">Untung</th>
-                            <th class="py-3.5 px-4 font-bold">Notes</th>
-                            <th id="thAction" class="py-3.5 px-4 font-bold text-center hidden">Tindakan</th>
+                        <tr id="tableHeadTr" class="bg-[#FFF0F3] text-gray-600 uppercase text-[10px] sm:text-[11px] tracking-wider transition-colors duration-300">
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold text-center">Bil</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Tarikh</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Kategori</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Nama Barang</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Payment</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Modal</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Terjual</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Untung</th>
+                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Notes</th>
+                            <th id="thAction" class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold text-center hidden">Tindakan</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y divide-gray-100 text-xs sm:text-sm text-gray-700">
+                    <tbody id="tableBody" class="divide-y divide-gray-100 text-[11px] sm:text-sm text-gray-700">
                         <!-- Data akan dimasukkan di sini secara automatik -->
                     </tbody>
                 </table>
@@ -261,42 +261,42 @@
 
             if (isDarkMode) {
                 // Tema Gelap dengan Neon Pink Accent yang Menarik & Jelas
-                body.className = "bg-[#090d16] text-gray-100 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                body.className = "bg-[#090d16] text-gray-100 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
                 themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
-                themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-4 py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5";
+                themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5";
                 
                 if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
                 if(filterBox) filterBox.className = "bg-[#111827]/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-lg border-2 border-[#ff2a85]/60 mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-[#111827]/95 backdrop-blur-sm rounded-3xl shadow-xl border-2 border-[#ff2a85]/60 overflow-hidden mb-6 transition-colors duration-300";
                 if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center bg-[#0d121d]/95 gap-3 transition-colors duration-300";
                 if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#0d121d]/95 border-t border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
-                if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[11px] font-extrabold tracking-wider transition-colors duration-300";
+                if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[10px] sm:text-[11px] font-extrabold tracking-wider transition-colors duration-300";
                 
                 if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-[#ff2a85] transition-colors duration-300";
                 if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-emerald-400 transition-colors duration-300";
                 if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-cyan-400 transition-colors duration-300 text-white";
                 
-                if(mainTitle) mainTitle.className = "text-xl sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)]";
+                if(mainTitle) mainTitle.className = "text-lg sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)]";
                 if(tableTitle) tableTitle.className = "text-base sm:text-lg font-bold text-gray-100";
 
             } else {
                 // Tema Asal (Matcha Strawberry)
-                body.className = "bg-[#FFF5F7] text-gray-800 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                body.className = "bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
                 themeBtn.innerHTML = "🌙 <span>Dark Mode</span>";
-                themeBtn.className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] border border-[#2D6A4F]/30 px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm cursor-pointer flex items-center gap-1.5";
+                themeBtn.className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] border border-[#2D6A4F]/30 px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm cursor-pointer flex items-center gap-1.5";
                 
                 if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
                 if(filterBox) filterBox.className = "bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300";
                 if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300";
                 if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
-                if(tableHeadTr) tableHeadTr.className = "bg-[#FFF0F3] text-gray-600 uppercase text-[11px] tracking-wider transition-colors duration-300";
+                if(tableHeadTr) tableHeadTr.className = "bg-[#FFF0F3] text-gray-600 uppercase text-[10px] sm:text-[11px] tracking-wider transition-colors duration-300";
                 
                 if(card1) card1.className = "bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300";
                 if(card2) card2.className = "bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300";
                 if(card3) card3.className = "bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white transition-colors duration-300";
                 
-                if(mainTitle) mainTitle.className = "text-xl sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight";
+                if(mainTitle) mainTitle.className = "text-lg sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight";
                 if(tableTitle) tableTitle.className = "text-base sm:text-lg font-bold text-gray-700";
             }
             renderTable();
@@ -306,7 +306,7 @@
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
                 document.getElementById('adminBtn').innerText = "🔐 Admin Login";
-                document.getElementById('adminBtn').className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer";
+                document.getElementById('adminBtn').className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer";
                 alert("Anda telah Log Out dari Mod Admin.");
                 renderTable();
                 return;
@@ -325,7 +325,7 @@
                 document.getElementById('adminPass').value = "";
                 
                 document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
-                document.getElementById('adminBtn').className = "text-xs bg-red-100 text-red-700 px-4 py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm border border-red-300 cursor-pointer";
+                document.getElementById('adminBtn').className = "text-xs bg-red-100 text-red-700 px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm border border-red-300 cursor-pointer";
                 
                 alert("Log Masuk Admin Berjaya!");
                 renderTable();
@@ -490,18 +490,18 @@
                 const row = document.createElement('tr');
                 row.className = isDarkMode ? "hover:bg-[#1f2937] transition text-gray-200 border-b border-[#ff2a85]/20" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
                 
-                let actionTd = isAdminLoggedIn ? `<td class="py-3.5 px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
+                let actionTd = isAdminLoggedIn ? `<td class="py-2 px-2 sm:py-3.5 sm:px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
 
                 row.innerHTML = `
-                    <td class="py-3.5 px-4 text-center font-bold text-gray-400 text-xs">${actualIndex}</td>
-                    <td class="py-3.5 px-4 whitespace-nowrap text-xs">${tx.tarikh}</td>
-                    <td class="py-3.5 px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-2 py-1 rounded-xl text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
-                    <td class="py-3.5 px-4 font-extrabold">${tx.namaBarang}</td>
-                    <td class="py-3.5 px-4"><span class="text-[10px] font-semibold bg-gray-500/10 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
-                    <td class="py-3.5 px-4 text-[#AE2012] font-bold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
-                    <td class="py-3.5 px-4 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
-                    <td class="py-3.5 px-4 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
-                    <td class="py-3.5 px-4 text-gray-400 text-xs">${tx.notes || '-'}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-center font-bold text-gray-400 text-[10px] sm:text-xs">${actualIndex}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 whitespace-nowrap text-[10px] sm:text-xs">${tx.tarikh}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-xl text-[9px] sm:text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 font-extrabold text-[11px] sm:text-sm">${tx.namaBarang}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4"><span class="text-[9px] sm:text-[10px] font-semibold bg-gray-500/10 px-1.5 py-0.5 sm:px-2 rounded-lg">${tx.paymentMethod}</span></td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-[#AE2012] font-bold text-[11px] sm:text-sm">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-[#2D6A4F] font-bold text-[11px] sm:text-sm">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-[#1B4332] font-black text-[11px] sm:text-sm">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-gray-400 text-[10px] sm:text-xs">${tx.notes || '-'}</td>
                     ${actionTd}
                 `;
                 tbody.appendChild(row);
@@ -542,7 +542,7 @@
             }
         }
 
-        // Fungsi Muat Turun PDF yang Dilengkapi Logo & Pelarasan Kolom Notes & Payment
+        // Fungsi Muat Turun PDF (Tarikh & Masa dirapatkan secara menegak, Kotak Bil & Payment dibetulkan)
         async function generatePDF() {
             try {
                 const timeVal = document.getElementById('pdfTime').value;
@@ -622,7 +622,8 @@
                 doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, boxY + 16);
 
                 const rows = pdfData.map((tx, idx) => {
-                    let cleanDate = (tx.tarikh || '').replace(' at ', ' - ');
+                    // Rapatkan tarikh dan masa secara menegak (Tarikh di atas, masa di bawah)
+                    let cleanDate = (tx.tarikh || '').replace(' at ', '\n');
                     return [
                         idx + 1,
                         cleanDate,
@@ -644,15 +645,15 @@
                     headStyles: { fillColor: [45, 106, 79], textColor: [255, 255, 255], fontStyle: 'bold' },
                     styles: { fontSize: 8, cellPadding: 2.5, overflow: 'linebreak' },
                     columnStyles: {
-                        0: { cellWidth: 8, halign: 'center' },   // Bil
-                        1: { cellWidth: 28 },                   // Tarikh & Masa dioptimumkan
+                        0: { cellWidth: 10, halign: 'center' },   // Kotak Bil diselaraskan
+                        1: { cellWidth: 24 },                   // Tarikh & Masa dirapatkan secara menegak
                         2: { cellWidth: 20 },                   // Kategori
-                        3: { cellWidth: 24 },                   // Barang
-                        4: { cellWidth: 22, halign: 'center' },   // Payment dibetulkan supaya tidak terpotong
+                        3: { cellWidth: 22 },                   // Barang
+                        4: { cellWidth: 21, halign: 'center' },   // Kotak Payment dibetulkan supaya muat dan kemas
                         5: { cellWidth: 20, halign: 'right' },  // Modal
                         6: { cellWidth: 20, halign: 'right' },  // Terjual
                         7: { cellWidth: 20, halign: 'right' },  // Untung
-                        8: { cellWidth: 'auto' }                // Notes diberi ruang luas (auto) untuk baca comment
+                        8: { cellWidth: 'auto' }                // Notes diberi ruang luas untuk baca comment
                     },
                     didDrawPage: function (data) {
                         let pageWidth = doc.internal.pageSize.width;
