@@ -13,8 +13,8 @@
         /* Animasi Strawberry Jatuh di Background */
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.25; }
-            80% { opacity: 0.25; }
+            20% { opacity: 0.3; }
+            80% { opacity: 0.3; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
         .falling-strawberry {
@@ -44,10 +44,9 @@
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Header: Kiri (Logo Besar + Tajuk), Kanan (Jam Malaysia + Live Indicator) -->
-        <div class="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
+        <!-- Header: Opacity 95% -->
+        <div class="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
             
-            <!-- Bahagian Kiri: Logo (Tanpa Kotak) + Tajuk -->
             <div class="flex flex-col sm:flex-row items-center gap-6 w-full md:w-auto text-center sm:text-left">
                 <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-28 md:h-36 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
                 <div>
@@ -55,11 +54,17 @@
                         <span class="text-2xl">🍵🍓</span>
                         <h1 class="text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight">Asbol Cashflow Live Dashboard</h1>
                     </div>
+                    <!-- Butang Admin Login / Status -->
+                    <div class="mt-2">
+                        <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 py-1.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition">
+                            🔐 Admin Login
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Bahagian Kanan: Widget Jam Waktu Malaysia + Green Dot Animation -->
-            <div class="bg-[#D8F3DC] px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-[270px] shrink-0">
+            <!-- Jam Waktu Malaysia + Live Indicator -->
+            <div class="bg-[#D8F3DC]/95 px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-[270px] shrink-0">
                 <div class="flex items-center gap-2">
                     <span class="relative flex h-2.5 w-2.5">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -74,25 +79,24 @@
             </div>
         </div>
         
-        <!-- Kad Ringkasan (Summary Cards) -->
+        <!-- Kad Ringkasan (Opacity 95%) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="bg-gradient-to-br from-[#FFE3E8] to-[#FFCCD5] p-4 rounded-2xl shadow-sm border border-[#FFB3C6]">
+            <div class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6]">
                 <p class="text-[11px] font-bold text-[#9B2226] uppercase tracking-wider">Total Modal Keluar</p>
                 <p id="totalKeluar" class="text-2xl font-black text-[#AE2012] mt-1">RM 0.00</p>
             </div>
-            <div class="bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] p-4 rounded-2xl shadow-sm border border-[#A5D6A7]">
+            <div class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7]">
                 <p class="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">Total Terjual</p>
                 <p id="totalTerjual" class="text-2xl font-black text-[#2D6A4F] mt-1">RM 0.00</p>
             </div>
-            <!-- Ditukar kepada "Total Untung Bersih" -->
-            <div class="bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] p-4 rounded-2xl shadow-sm text-white">
+            <div class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white">
                 <p class="text-[11px] font-bold text-[#D8F3DC] uppercase tracking-wider">Total Untung Bersih</p>
                 <p id="jumlahUntung" class="text-2xl font-black text-[#95D5B2] mt-1">RM 0.00</p>
             </div>
         </div>
 
-        <!-- Bahagian Filter Bar -->
-        <div class="bg-white p-4 md:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Bahagian Filter Bar (Opacity 95%) -->
+        <div class="bg-white/95 backdrop-blur-sm p-4 md:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
                 <label class="block text-xs font-bold text-gray-600 mb-1">🔍 Filter Masa:</label>
                 <select id="filterTime" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
@@ -119,11 +123,10 @@
             </div>
         </div>
 
-        <!-- Jadual Senarai Transaksi -->
-        <div class="bg-white rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
-            <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#FFFAFA]">
+        <!-- Jadual Senarai Transaksi (Opacity 95%) -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
+            <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#FFFAFA]/95">
                 <h2 class="text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
-                <!-- Butang Refresh Whole Page -->
                 <button onclick="refreshPage()" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center gap-1.5 cursor-pointer">
                     🔄 Muat Semula
                 </button>
@@ -141,6 +144,7 @@
                             <th class="py-3.5 px-6 font-bold">Terjual (RM)</th>
                             <th class="py-3.5 px-6 font-bold">Untung (RM)</th>
                             <th class="py-3.5 px-6 font-bold">Notes</th>
+                            <th id="thAction" class="py-3.5 px-4 font-bold text-center hidden">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody" class="divide-y divide-gray-100 text-sm text-gray-700">
@@ -149,11 +153,32 @@
                 </table>
             </div>
             
-            <!-- Pagination Controls (10 data per page) -->
-            <div class="px-6 py-4 bg-[#FFFAFA] border-t border-gray-100 flex justify-between items-center">
+            <!-- Pagination Controls -->
+            <div class="px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex justify-between items-center">
                 <button id="prevBtn" onclick="changePage(-1)" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">← Sebelumnya</button>
                 <span id="pageIndicator" class="text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
                 <button id="nextBtn" onclick="changePage(1)" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">Seterusnya →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ADMIN LOGIN -->
+    <div id="adminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-3xl shadow-xl w-80 border border-[#FFCCD5]">
+            <h3 class="text-lg font-bold text-[#2D6A4F] mb-4 text-center">🔐 Admin Login</h3>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">User ID:</label>
+                    <input type="text" id="adminUser" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]" placeholder="Masukkan UserID">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">Password:</label>
+                    <input type="password" id="adminPass" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#2D6A4F]" placeholder="Masukkan Password">
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <button onclick="handleAdminLogin()" class="flex-1 bg-[#2D6A4F] text-white py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition">Login</button>
+                    <button onclick="toggleAdminModal()" class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-xl text-xs font-bold hover:bg-gray-300 transition">Batal</button>
+                </div>
             </div>
         </div>
     </div>
@@ -165,10 +190,69 @@
         let filteredTransactions = [];
         let currentPage = 1;
         const rowsPerPage = 10;
+        let isAdminLoggedIn = false;
 
-        // Fungsi Refresh Whole Page
         function refreshPage() {
             location.reload();
+        }
+
+        // Modal Admin Toggle
+        function toggleAdminModal() {
+            if (isAdminLoggedIn) {
+                // Jika sudah login, klik butang akan logout
+                isAdminLoggedIn = false;
+                document.getElementById('adminBtn').innerText = "🔐 Admin Login";
+                document.getElementById('adminBtn').className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 py-1.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition";
+                alert("Anda telah Log Out dari Mod Admin.");
+                renderTable();
+                return;
+            }
+            const modal = document.getElementById('adminModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Proses Login Admin
+        function handleAdminLogin() {
+            const user = document.getElementById('adminUser').value.trim();
+            const pass = document.getElementById('adminPass').value.trim();
+
+            if (user === "Asbol" && pass === "Asbol@123") {
+                isAdminLoggedIn = true;
+                document.getElementById('adminModal').classList.add('hidden');
+                document.getElementById('adminUser').value = "";
+                document.getElementById('adminPass').value = "";
+                
+                document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
+                document.getElementById('adminBtn').className = "text-xs bg-red-100 text-red-700 px-3 py-1.5 rounded-xl font-bold hover:bg-red-200 transition";
+                
+                alert("Log Masuk Admin Berjaya! Anda kini boleh memadam data.");
+                renderTable();
+            } else {
+                alert("UserID atau Password salah!");
+            }
+        }
+
+        // Fungsi Padam Data ke Google Sheets
+        async function deleteRow(rowIndex) {
+            if (!confirm("Adakah anda pasti mahu memadam transaksi ini?")) return;
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: "delete", rowIndex: rowIndex })
+                });
+                const result = await response.json();
+                if (result.status === "success") {
+                    alert("Transaksi berjaya dipadam!");
+                    fetchData(); // Muat semula data
+                } else {
+                    alert("Ralat memadam data: " + result.message);
+                }
+            } catch (error) {
+                console.error("Ralat rangkaian:", error);
+                alert("Gagal berhubung dengan pelayan.");
+            }
         }
 
         // Jam Real-Time Malaysia
@@ -189,7 +273,7 @@
         setInterval(updateMalaysiaTime, 1000);
         updateMalaysiaTime();
 
-        // Ambil Data dari Google Sheets & Isih ikut Terbaru (Newest First)
+        // Ambil Data dari Google Sheets & Isih Newest First
         async function fetchData() {
             try {
                 const response = await fetch(WEB_APP_URL);
@@ -197,7 +281,6 @@
 
                 allTransactions = data.transactions || [];
 
-                // Isih data: Paling baru di atas (Newest First)
                 allTransactions.sort((a, b) => {
                     let dateA = new Date((a.tarikh || '').replace(' at ', ' '));
                     let dateB = new Date((b.tarikh || '').replace(' at ', ' '));
@@ -213,7 +296,6 @@
             }
         }
 
-        // Jana Pilihan Kategori Automatik ke dalam Dropdown
         function populateCategoryDropdown() {
             const categorySelect = document.getElementById('filterCategory');
             const currentSelected = categorySelect.value;
@@ -228,7 +310,6 @@
             categorySelect.value = currentSelected;
         }
 
-        // Fungsi Penapisan (Filtering Logic & Update Summary Dinamik)
         function applyFilters() {
             const timeFilter = document.getElementById('filterTime').value;
             const categoryFilter = document.getElementById('filterCategory').value;
@@ -241,7 +322,6 @@
                 let txDate = new Date(cleanDateStr);
                 if (isNaN(txDate)) txDate = new Date();
 
-                // Filter Masa
                 if (timeFilter === 'week') {
                     const diffTime = Math.abs(now - txDate);
                     const diffDays = diffTime / (1000 * 60 * 60 * 24);
@@ -252,10 +332,8 @@
                     if (txDate.getFullYear() !== now.getFullYear()) return false;
                 }
 
-                // Filter Kategori
                 if (categoryFilter !== 'all' && tx.kategori !== categoryFilter) return false;
 
-                // Filter Payment
                 if (paymentFilter !== 'all') {
                     let txPay = (tx.paymentMethod || '').trim().toLowerCase();
                     let filterPay = paymentFilter.trim().toLowerCase();
@@ -265,7 +343,6 @@
                 return true;
             });
 
-            // Kira semula Total mengikut data yang ditapis (Filtered Summary)
             let sumKeluar = 0;
             let sumTerjual = 0;
             let sumUntung = 0;
@@ -284,13 +361,20 @@
             renderTable();
         }
 
-        // Papar Jadual dengan Pagination (10 data setiap page)
         function renderTable() {
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
 
+            const thAction = document.getElementById('thAction');
+            if (isAdminLoggedIn) {
+                thAction.classList.remove('hidden');
+            } else {
+                thAction.classList.add('hidden');
+            }
+
             if (filteredTransactions.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-gray-400">Tiada transaksi sepadan ditemui.</td></tr>`;
+                let colspan = isAdminLoggedIn ? 10 : 9;
+                tbody.innerHTML = `<tr><td colspan="${colspan}" class="text-center py-6 text-gray-400">Tiada transaksi sepadan ditemui.</td></tr>`;
                 document.getElementById('pageIndicator').innerText = "Halaman 0 dari 0";
                 document.getElementById('prevBtn').disabled = true;
                 document.getElementById('nextBtn').disabled = true;
@@ -308,6 +392,9 @@
                 const actualIndex = startIdx + index + 1;
                 const row = document.createElement('tr');
                 row.className = "hover:bg-[#FFF5F7]/50 transition";
+                
+                let actionTd = isAdminLoggedIn ? `<td class="py-3.5 px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-red-600 transition">Padam</button></td>` : '';
+
                 row.innerHTML = `
                     <td class="py-3.5 px-4 text-center font-bold text-gray-400 text-xs">${actualIndex}</td>
                     <td class="py-3.5 px-6 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
@@ -318,6 +405,7 @@
                     <td class="py-3.5 px-6 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
                     <td class="py-3.5 px-6 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
                     <td class="py-3.5 px-6 text-gray-400 text-xs">${tx.notes || '-'}</td>
+                    ${actionTd}
                 `;
                 tbody.appendChild(row);
             });
