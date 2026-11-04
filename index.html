@@ -6,6 +6,9 @@
     <title>Asbol Cashflow Live Dashboard</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jsPDF & AutoTable untuk fungsi PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -28,75 +31,77 @@
         }
     </style>
 </head>
-<body class="bg-[#FFF5F7] text-gray-800 p-4 md:p-6 min-h-screen relative overflow-x-hidden">
+<body class="bg-[#FFF5F7] text-gray-800 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden">
 
     <!-- Efek Latar Belakang Strawberry Jatuh -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div class="falling-strawberry" style="left: 5%; animation-duration: 12s; animation-delay: 0s;">🍓</div>
-        <div class="falling-strawberry" style="left: 15%; animation-duration: 16s; animation-delay: 2s;">🍓</div>
-        <div class="falling-strawberry" style="left: 28%; animation-duration: 10s; animation-delay: 4s;">🍓</div>
-        <div class="falling-strawberry" style="left: 40%; animation-duration: 14s; animation-delay: 1s;">🍓</div>
-        <div class="falling-strawberry" style="left: 55%; animation-duration: 18s; animation-delay: 5s;">🍓</div>
-        <div class="falling-strawberry" style="left: 68%; animation-duration: 11s; animation-delay: 3s;">🍓</div>
-        <div class="falling-strawberry" style="left: 80%; animation-duration: 15s; animation-delay: 2s;">🍓</div>
-        <div class="falling-strawberry" style="left: 92%; animation-duration: 13s; animation-delay: 6s;">🍓</div>
+        <div class="falling-strawberry" style="left: 18%; animation-duration: 16s; animation-delay: 2s;">🍓</div>
+        <div class="falling-strawberry" style="left: 32%; animation-duration: 10s; animation-delay: 4s;">🍓</div>
+        <div class="falling-strawberry" style="left: 48%; animation-duration: 14s; animation-delay: 1s;">🍓</div>
+        <div class="falling-strawberry" style="left: 62%; animation-duration: 18s; animation-delay: 5s;">🍓</div>
+        <div class="falling-strawberry" style="left: 78%; animation-duration: 11s; animation-delay: 3s;">🍓</div>
+        <div class="falling-strawberry" style="left: 90%; animation-duration: 15s; animation-delay: 2s;">🍓</div>
     </div>
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Header: Opacity 95% -->
-        <div class="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
+        <!-- Header: Atas Kanan (Admin Login + Jam Malaysia), Kiri (Logo + Tajuk) -->
+        <div class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
             
-            <div class="flex flex-col sm:flex-row items-center gap-6 w-full md:w-auto text-center sm:text-left">
-                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-28 md:h-36 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
+            <!-- Bahagian Kiri: Logo + Tajuk -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full lg:w-auto text-center sm:text-left">
+                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-24 sm:h-28 md:h-32 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
                 <div>
                     <div class="flex items-center justify-center sm:justify-start gap-2">
-                        <span class="text-2xl">🍵🍓</span>
-                        <h1 class="text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight">Asbol Cashflow Live Dashboard</h1>
-                    </div>
-                    <!-- Butang Admin Login / Status -->
-                    <div class="mt-2">
-                        <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 py-1.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition">
-                            🔐 Admin Login
-                        </button>
+                        <span class="text-xl sm:text-2xl">🍵🍓</span>
+                        <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight">Asbol Cashflow Live Dashboard</h1>
                     </div>
                 </div>
             </div>
 
-            <!-- Jam Waktu Malaysia + Live Indicator -->
-            <div class="bg-[#D8F3DC]/95 px-5 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-[270px] shrink-0">
-                <div class="flex items-center gap-2">
-                    <span class="relative flex h-2.5 w-2.5">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.3)]"></span>
-                    </span>
-                    <span class="text-xl">🇲🇾</span>
-                </div>
-                <div>
-                    <p class="text-[10px] uppercase tracking-wider text-[#2D6A4F] font-bold">Waktu Malaysia (MYT)</p>
-                    <p id="malaysiaClock" class="text-sm font-extrabold text-[#1B4332] whitespace-nowrap">Memuatkan masa...</p>
+            <!-- Bahagian Kanan: Admin Login & Jam Waktu Malaysia -->
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto justify-end">
+                <!-- Butang Admin Login di Atas Kanan -->
+                <button id="adminBtn" onclick="toggleAdminModal()" class="w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-3 sm:py-2 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
+                    🔐 Admin Login
+                </button>
+
+                <!-- Jam Waktu Malaysia + Live Indicator -->
+                <div class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0">
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.3)]"></span>
+                        </span>
+                        <span class="text-lg">🇲🇾</span>
+                    </div>
+                    <div>
+                        <p class="text-[9px] uppercase tracking-wider text-[#2D6A4F] font-bold">Waktu Malaysia (MYT)</p>
+                        <p id="malaysiaClock" class="text-xs sm:text-sm font-extrabold text-[#1B4332] whitespace-nowrap">Memuatkan masa...</p>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- Kad Ringkasan (Opacity 95%) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <!-- Kad Ringkasan (Summary Cards) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             <div class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6]">
                 <p class="text-[11px] font-bold text-[#9B2226] uppercase tracking-wider">Total Modal Keluar</p>
-                <p id="totalKeluar" class="text-2xl font-black text-[#AE2012] mt-1">RM 0.00</p>
+                <p id="totalKeluar" class="text-xl sm:text-2xl font-black text-[#AE2012] mt-1">RM 0.00</p>
             </div>
             <div class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7]">
                 <p class="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">Total Terjual</p>
-                <p id="totalTerjual" class="text-2xl font-black text-[#2D6A4F] mt-1">RM 0.00</p>
+                <p id="totalTerjual" class="text-xl sm:text-2xl font-black text-[#2D6A4F] mt-1">RM 0.00</p>
             </div>
             <div class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white">
                 <p class="text-[11px] font-bold text-[#D8F3DC] uppercase tracking-wider">Total Untung Bersih</p>
-                <p id="jumlahUntung" class="text-2xl font-black text-[#95D5B2] mt-1">RM 0.00</p>
+                <p id="jumlahUntung" class="text-xl sm:text-2xl font-black text-[#95D5B2] mt-1">RM 0.00</p>
             </div>
         </div>
 
-        <!-- Bahagian Filter Bar (Opacity 95%) -->
-        <div class="bg-white/95 backdrop-blur-sm p-4 md:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Bahagian Filter Bar & Tombol PDF -->
+        <div class="bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
             <div>
                 <label class="block text-xs font-bold text-gray-600 mb-1">🔍 Filter Masa:</label>
                 <select id="filterTime" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
@@ -121,50 +126,55 @@
                     <option value="Banking">Banking</option>
                 </select>
             </div>
+            <div>
+                <button onclick="openPdfModal()" class="w-full bg-[#AE2012] text-white p-2.5 rounded-xl text-xs font-bold hover:bg-[#9B2226] transition shadow-md flex items-center justify-center gap-2">
+                    📄 Download PDF
+                </button>
+            </div>
         </div>
 
-        <!-- Jadual Senarai Transaksi (Opacity 95%) -->
+        <!-- Jadual Senarai Transaksi -->
         <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
-            <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#FFFAFA]/95">
-                <h2 class="text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
-                <button onclick="refreshPage()" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center gap-1.5 cursor-pointer">
+            <div class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3">
+                <h2 class="text-base sm:text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
+                <button onclick="refreshPage()" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
                     🔄 Muat Semula
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[700px]">
                     <thead>
                         <tr class="bg-[#FFF0F3] text-gray-600 uppercase text-[11px] tracking-wider">
                             <th class="py-3.5 px-4 font-bold text-center">Bil</th>
-                            <th class="py-3.5 px-6 font-bold">Tarikh</th>
-                            <th class="py-3.5 px-6 font-bold">Kategori</th>
-                            <th class="py-3.5 px-6 font-bold">Nama Barang</th>
-                            <th class="py-3.5 px-6 font-bold">Payment</th>
-                            <th class="py-3.5 px-6 font-bold">Modal (RM)</th>
-                            <th class="py-3.5 px-6 font-bold">Terjual (RM)</th>
-                            <th class="py-3.5 px-6 font-bold">Untung (RM)</th>
-                            <th class="py-3.5 px-6 font-bold">Notes</th>
+                            <th class="py-3.5 px-4 font-bold">Tarikh</th>
+                            <th class="py-3.5 px-4 font-bold">Kategori</th>
+                            <th class="py-3.5 px-4 font-bold">Nama Barang</th>
+                            <th class="py-3.5 px-4 font-bold">Payment</th>
+                            <th class="py-3.5 px-4 font-bold">Modal</th>
+                            <th class="py-3.5 px-4 font-bold">Terjual</th>
+                            <th class="py-3.5 px-4 font-bold">Untung</th>
+                            <th class="py-3.5 px-4 font-bold">Notes</th>
                             <th id="thAction" class="py-3.5 px-4 font-bold text-center hidden">Tindakan</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y divide-gray-100 text-sm text-gray-700">
+                    <tbody id="tableBody" class="divide-y divide-gray-100 text-xs sm:text-sm text-gray-700">
                         <!-- Data akan dimasukkan di sini secara automatik -->
                     </tbody>
                 </table>
             </div>
             
             <!-- Pagination Controls -->
-            <div class="px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex justify-between items-center">
-                <button id="prevBtn" onclick="changePage(-1)" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">← Sebelumnya</button>
+            <div class="px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <button id="prevBtn" onclick="changePage(-1)" class="w-full sm:w-auto bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">← Sebelumnya</button>
                 <span id="pageIndicator" class="text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
-                <button id="nextBtn" onclick="changePage(1)" class="bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">Seterusnya →</button>
+                <button id="nextBtn" onclick="changePage(1)" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">Seterusnya →</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL ADMIN LOGIN -->
-    <div id="adminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-white p-6 rounded-3xl shadow-xl w-80 border border-[#FFCCD5]">
+    <div id="adminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-xs border border-[#FFCCD5]">
             <h3 class="text-lg font-bold text-[#2D6A4F] mb-4 text-center">🔐 Admin Login</h3>
             <div class="space-y-3">
                 <div>
@@ -183,6 +193,35 @@
         </div>
     </div>
 
+    <!-- MODAL PDF FILTER -->
+    <div id="pdfModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-md border border-[#FFCCD5]">
+            <h3 class="text-lg font-bold text-[#AE2012] mb-3 text-center">📄 Muat Turun Laporan PDF</h3>
+            <p class="text-xs text-gray-500 mb-4 text-center">Pilih tetapan penapisan untuk laporan PDF anda:</p>
+            <div class="space-y-3 mb-5">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">Pilih Filter Masa:</label>
+                    <select id="pdfTime" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#AE2012]">
+                        <option value="all">Semua Masa</option>
+                        <option value="week">Minggu Ini (7 Hari Lepas)</option>
+                        <option value="month">Bulan Ini</option>
+                        <option value="year">Tahun Ini</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">Pilih Kategori:</label>
+                    <select id="pdfCategory" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-xs rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-[#AE2012]">
+                        <option value="all">Semua Kategori</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="generatePDF()" class="flex-1 bg-[#AE2012] text-white py-2.5 rounded-xl text-xs font-bold hover:bg-[#9B2226] transition">Jana & Download PDF</button>
+                <button onclick="closePdfModal()" class="flex-1 bg-gray-200 text-gray-700 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-300 transition">Batal</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzibsgR7xSquO1qr77e0PpSlOUElRCRDauGQ2EhhBvBGewloAq81aA45MbBECD-CDhS/exec";
 
@@ -196,22 +235,18 @@
             location.reload();
         }
 
-        // Modal Admin Toggle
         function toggleAdminModal() {
             if (isAdminLoggedIn) {
-                // Jika sudah login, klik butang akan logout
                 isAdminLoggedIn = false;
                 document.getElementById('adminBtn').innerText = "🔐 Admin Login";
-                document.getElementById('adminBtn').className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 py-1.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition";
+                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-3 sm:py-2 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm";
                 alert("Anda telah Log Out dari Mod Admin.");
                 renderTable();
                 return;
             }
-            const modal = document.getElementById('adminModal');
-            modal.classList.toggle('hidden');
+            document.getElementById('adminModal').classList.toggle('hidden');
         }
 
-        // Proses Login Admin
         function handleAdminLogin() {
             const user = document.getElementById('adminUser').value.trim();
             const pass = document.getElementById('adminPass').value.trim();
@@ -223,16 +258,15 @@
                 document.getElementById('adminPass').value = "";
                 
                 document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
-                document.getElementById('adminBtn').className = "text-xs bg-red-100 text-red-700 px-3 py-1.5 rounded-xl font-bold hover:bg-red-200 transition";
+                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-red-100 text-red-700 px-4 py-3 sm:py-2 rounded-xl font-bold hover:bg-red-200 transition shadow-sm";
                 
-                alert("Log Masuk Admin Berjaya! Anda kini boleh memadam data.");
+                alert("Log Masuk Admin Berjaya!");
                 renderTable();
             } else {
                 alert("UserID atau Password salah!");
             }
         }
 
-        // Fungsi Padam Data ke Google Sheets
         async function deleteRow(rowIndex) {
             if (!confirm("Adakah anda pasti mahu memadam transaksi ini?")) return;
 
@@ -245,7 +279,7 @@
                 const result = await response.json();
                 if (result.status === "success") {
                     alert("Transaksi berjaya dipadam!");
-                    fetchData(); // Muat semula data
+                    fetchData();
                 } else {
                     alert("Ralat memadam data: " + result.message);
                 }
@@ -273,7 +307,6 @@
         setInterval(updateMalaysiaTime, 1000);
         updateMalaysiaTime();
 
-        // Ambil Data dari Google Sheets & Isih Newest First
         async function fetchData() {
             try {
                 const response = await fetch(WEB_APP_URL);
@@ -289,25 +322,27 @@
                     return dateB - dateA;
                 });
 
-                populateCategoryDropdown();
+                populateCategoryDropdowns();
                 applyFilters();
             } catch (error) {
                 console.error('Ralat memuatkan data:', error);
             }
         }
 
-        function populateCategoryDropdown() {
-            const categorySelect = document.getElementById('filterCategory');
-            const currentSelected = categorySelect.value;
-            
+        function populateCategoryDropdowns() {
             const categories = [...new Set(allTransactions.map(t => t.kategori))].filter(Boolean);
             
-            let optionsHtml = '<option value="all">Semua Kategori</option>';
-            categories.forEach(cat => {
-                optionsHtml += `<option value="${cat}">${cat}</option>`;
-            });
-            categorySelect.innerHTML = optionsHtml;
-            categorySelect.value = currentSelected;
+            // Dashboard Filter
+            const catSelect = document.getElementById('filterCategory');
+            const currentVal = catSelect.value;
+            let html = '<option value="all">Semua Kategori</option>';
+            categories.forEach(cat => html += `<option value="${cat}">${cat}</option>`);
+            catSelect.innerHTML = html;
+            catSelect.value = currentVal;
+
+            // PDF Modal Filter
+            const pdfCatSelect = document.getElementById('pdfCategory');
+            pdfCatSelect.innerHTML = html;
         }
 
         function applyFilters() {
@@ -343,10 +378,7 @@
                 return true;
             });
 
-            let sumKeluar = 0;
-            let sumTerjual = 0;
-            let sumUntung = 0;
-
+            let sumKeluar = 0, sumTerjual = 0, sumUntung = 0;
             filteredTransactions.forEach(tx => {
                 sumKeluar += parseFloat(tx.amountKeluar || 0);
                 sumTerjual += parseFloat(tx.amountTerjual || 0);
@@ -397,14 +429,14 @@
 
                 row.innerHTML = `
                     <td class="py-3.5 px-4 text-center font-bold text-gray-400 text-xs">${actualIndex}</td>
-                    <td class="py-3.5 px-6 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
-                    <td class="py-3.5 px-6"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-2.5 py-1 rounded-xl text-xs font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
-                    <td class="py-3.5 px-6 font-extrabold text-gray-800">${tx.namaBarang}</td>
-                    <td class="py-3.5 px-6"><span class="text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
-                    <td class="py-3.5 px-6 text-[#AE2012] font-bold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
-                    <td class="py-3.5 px-6 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
-                    <td class="py-3.5 px-6 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
-                    <td class="py-3.5 px-6 text-gray-400 text-xs">${tx.notes || '-'}</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
+                    <td class="py-3.5 px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-2 py-1 rounded-xl text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
+                    <td class="py-3.5 px-4 font-extrabold text-gray-800">${tx.namaBarang}</td>
+                    <td class="py-3.5 px-4"><span class="text-[10px] font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
+                    <td class="py-3.5 px-4 text-[#AE2012] font-bold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                    <td class="py-3.5 px-4 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                    <td class="py-3.5 px-4 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                    <td class="py-3.5 px-4 text-gray-400 text-xs">${tx.notes || '-'}</td>
                     ${actionTd}
                 `;
                 tbody.appendChild(row);
@@ -418,6 +450,109 @@
         function changePage(direction) {
             currentPage += direction;
             renderTable();
+        }
+
+        // Fungsi Modal PDF
+        function openPdfModal() {
+            document.getElementById('pdfModal').classList.remove('hidden');
+        }
+
+        function closePdfModal() {
+            document.getElementById('pdfModal').classList.add('hidden');
+        }
+
+        // Helper tukar imej ke Base64 untuk jsPDF
+        function getBase64Image(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = 'Anonymous';
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    resolve(canvas.toDataURL('image/png'));
+                };
+                img.onerror = reject;
+                img.src = url;
+            });
+        }
+
+        // Jana PDF mengikut Filter yang dipilih
+        async function generatePDF() {
+            const timeVal = document.getElementById('pdfTime').value;
+            const catVal = document.getElementById('pdfCategory').value;
+            const now = new Date();
+
+            let pdfData = allTransactions.filter(tx => {
+                let cleanDateStr = (tx.tarikh || '').replace(' at ', ' ');
+                let txDate = new Date(cleanDateStr);
+                if (isNaN(txDate)) txDate = new Date();
+
+                if (timeVal === 'week') {
+                    const diffTime = Math.abs(now - txDate);
+                    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                    if (diffDays > 7) return false;
+                } else if (timeVal === 'month') {
+                    if (txDate.getMonth() !== now.getMonth() || txDate.getFullYear() !== now.getFullYear()) return false;
+                } else if (timeVal === 'year') {
+                    if (txDate.getFullYear() !== now.getFullYear()) return false;
+                }
+
+                if (catVal !== 'all' && tx.kategori !== catVal) return false;
+                return true;
+            });
+
+            if (pdfData.length === 0) {
+                alert("Tiada data untuk dijana dalam PDF mengikut filter tersebut.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Masukkan Logo Asbol di tengah atas
+            try {
+                const logoBase64 = await getBase64Image("https://i.ibb.co/wNmYjgWP/asbol.png");
+                doc.addImage(logoBase64, 'PNG', 92, 10, 26, 26);
+            } catch (e) {
+                console.log("Gagal muat logo untuk PDF");
+            }
+
+            // Tajuk Asbol Syndicate di bawah logo
+            doc.setFontSize(16);
+            doc.setTextColor(45, 106, 79); // Matcha Dark
+            doc.text("Asbol Syndicate", 105, 42, { align: "center" });
+
+            doc.setFontSize(11);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Laporan Cashflow Flip Barang", 105, 49, { align: "center" });
+
+            // Sediakan baris jadual untuk autoTable (menyokong multi-page automatik)
+            const rows = pdfData.map((tx, idx) => [
+                idx + 1,
+                tx.tarikh,
+                tx.kategori,
+                tx.namaBarang,
+                tx.paymentMethod,
+                `RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}`,
+                `RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}`,
+                `RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}`,
+                tx.notes || '-'
+            ]);
+
+            doc.autoTable({
+                startY: 58,
+                head: [['Bil', 'Tarikh', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
+                body: rows,
+                theme: 'grid',
+                headStyles: { fillColor: [45, 106, 79] },
+                styles: { fontSize: 8, cellPadding: 2 }
+            });
+
+            doc.save("Laporan_Cashflow_Asbol.pdf");
+            closePdfModal();
         }
 
         fetchData();
