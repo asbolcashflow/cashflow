@@ -193,7 +193,7 @@
         </div>
     </div>
 
-    <!-- MODAL EDIT TRANSAKSI (BARU) -->
+    <!-- MODAL EDIT TRANSAKSI -->
     <div id="editModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-md border border-[#FFCCD5]">
             <h3 class="text-lg font-bold text-[#2D6A4F] mb-3 text-center">✏️ Edit Transaksi</h3>
@@ -390,7 +390,6 @@
             }
         }
 
-        // --- FUNGSI EDIT TRANSAKSI ---
         function openEditModal(txStr) {
             const tx = JSON.parse(decodeURIComponent(txStr));
             document.getElementById('editRowIndex').value = tx.rowIndex;
@@ -496,7 +495,14 @@
                 const response = await fetch(WEB_APP_URL);
                 const data = await response.json();
 
-                allTransactions = data.transactions || [];
+                let rawTransactions = data.transactions || [];
+
+                // TAPIS BARIS KOSONG: Hanya ambil transaksi yang mempunyai Tarikh ATAU Nama Barang
+                allTransactions = rawTransactions.filter(tx => {
+                    let hasDate = tx.tarikh && tx.tarikh.toString().trim() !== "";
+                    let hasName = tx.namaBarang && tx.namaBarang.toString().trim() !== "";
+                    return hasDate || hasName;
+                });
 
                 allTransactions.sort((a, b) => {
                     let dateA = new Date((a.tarikh || '').replace(' at ', ' '));
@@ -622,7 +628,6 @@
                 const row = document.createElement('tr');
                 row.className = isDarkMode ? "hover:bg-[#1f2937] transition text-gray-200 border-b border-[#ff2a85]/20" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
                 
-                // Butang Edit & Padam untuk Admin
                 let txJson = encodeURIComponent(JSON.stringify(tx));
                 let actionTd = isAdminLoggedIn ? `
                     <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center whitespace-nowrap">
