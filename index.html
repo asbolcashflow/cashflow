@@ -13,7 +13,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        /* Animasi Strawberry Jatuh di Background */
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
             20% { opacity: 0.3; }
@@ -33,7 +32,6 @@
 </head>
 <body id="pageBody" class="bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300">
 
-    <!-- Efek Latar Belakang Strawberry Jatuh -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div class="falling-strawberry" style="left: 5%; animation-duration: 12s; animation-delay: 0s;">🍓</div>
         <div class="falling-strawberry" style="left: 18%; animation-duration: 16s; animation-delay: 2s;">🍓</div>
@@ -46,7 +44,6 @@
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Tombol Tetapan di Penjuru Atas Kanan -->
         <div class="flex justify-end items-center gap-2 mb-3">
             <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm">
                 🌙 <span>Dark Mode</span>
@@ -56,7 +53,6 @@
             </button>
         </div>
 
-        <!-- 1. MAIN DASHBOARD: Header -->
         <div id="headerBox" class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300">
             <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 w-full md:w-auto text-center sm:text-left">
                 <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-28 sm:h-36 md:h-40 w-auto object-contain shrink-0 drop-shadow-lg mx-auto sm:mx-0" onerror="this.style.display='none'">
@@ -68,7 +64,6 @@
                 </div>
             </div>
 
-            <!-- Jam Waktu Malaysia -->
             <div id="clockBox" class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0 transition-colors duration-300 justify-center sm:justify-start">
                 <div class="flex items-center gap-2">
                     <span class="relative flex h-2.5 w-2.5">
@@ -84,7 +79,6 @@
             </div>
         </div>
 
-        <!-- 2. FILTER & PDF DOWNLOAD -->
         <div id="filterBox" class="bg-white/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300">
             <div>
                 <label class="block text-[10px] sm:text-xs font-bold text-gray-500 mb-1" id="labelTime">🔍 Filter Masa:</label>
@@ -117,7 +111,6 @@
             </div>
         </div>
 
-        <!-- 3. SEMUA TOTAL (Summary Cards) -->
         <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
                 <p class="text-[8px] sm:text-[11px] font-bold text-[#9B2226] uppercase tracking-tighter sm:tracking-wider leading-tight" id="labelCard1">Total Modal Keluar</p>
@@ -133,7 +126,6 @@
             </div>
         </div>
 
-        <!-- 4. DATA (Jadual Senarai Transaksi) -->
         <div id="tableBox" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300">
             <div id="tableHeader" class="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
                 <h2 class="text-sm sm:text-lg font-bold text-gray-700" id="tableTitle">Senarai Transaksi Terkini</h2>
@@ -158,12 +150,11 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody" class="divide-y divide-gray-100 text-[10px] sm:text-sm text-gray-700">
-                        <!-- Data akan dimasukkan di sini secara automatik -->
+                        <!-- Data dimasukkan secara automatik -->
                     </tbody>
                 </table>
             </div>
             
-            <!-- Pagination Controls -->
             <div id="tableContainer" class="px-3 sm:px-6 py-3 sm:py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 transition-colors duration-300">
                 <button id="prevBtn" onclick="changePage(-1)" class="w-full sm:w-auto bg-gray-200 text-gray-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold disabled:opacity-40 transition cursor-pointer">← Sebelumnya</button>
                 <span id="pageIndicator" class="text-[11px] sm:text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
@@ -472,7 +463,6 @@
             }
         }
 
-        // Jam Real-Time Malaysia
         function updateMalaysiaTime() {
             const options = { 
                 timeZone: 'Asia/Kuala_Lumpur', 
@@ -497,7 +487,6 @@
 
                 let rawTransactions = data.transactions || [];
 
-                // TAPIS BARIS KOSONG: Hanya ambil transaksi yang mempunyai Tarikh ATAU Nama Barang
                 allTransactions = rawTransactions.filter(tx => {
                     let hasDate = tx.tarikh && tx.tarikh.toString().trim() !== "";
                     let hasName = tx.namaBarang && tx.namaBarang.toString().trim() !== "";
@@ -606,6 +595,7 @@
                 thAction.classList.add('hidden');
             }
 
+            // FIX PAGING KOSONG: Jika tiada data, disable terus butang Seterusnya & Sebelumnya
             if (filteredTransactions.length === 0) {
                 let colspan = isAdminLoggedIn ? 10 : 9;
                 tbody.innerHTML = `<tr><td colspan="${colspan}" class="text-center py-6 text-gray-400">Tiada transaksi sepadan ditemui.</td></tr>`;
