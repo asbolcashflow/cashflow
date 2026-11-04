@@ -48,10 +48,10 @@
         
         <!-- Tombol Tetapan di Penjuru Atas Kanan (Luar Kotak Header) -->
         <div class="flex justify-end items-center gap-2 mb-3">
-            <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-white/90 dark:bg-[#161b22] text-[#2D6A4F] dark:text-[#ff2a85] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 dark:border-[#ff2a85]/50 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm">
+            <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm">
                 🌙 <span>Dark Mode</span>
             </button>
-            <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-white/90 dark:bg-[#161b22] text-[#2D6A4F] dark:text-[#ff2a85] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 dark:border-[#ff2a85]/50 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm">
+            <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm">
                 🔐 <span>Admin Login</span>
             </button>
         </div>
@@ -236,11 +236,12 @@
             location.reload();
         }
 
-        // Fungsi Tukar Tema Dark Mode & Light Mode
+        // Fungsi Tukar Tema Dark Mode & Light Mode (Sentiasa bermula dalam Light Mode)
         function toggleDarkMode() {
             isDarkMode = !isDarkMode;
             const body = document.getElementById('pageBody');
             const themeBtn = document.getElementById('themeToggleBtn');
+            const adminBtn = document.getElementById('adminBtn');
             const headerBox = document.getElementById('headerBox');
             const filterBox = document.getElementById('filterBox');
             const tableBox = document.getElementById('tableBox');
@@ -257,13 +258,13 @@
             const tableTitle = document.getElementById('tableTitle');
 
             if (isDarkMode) {
-                // Tema Gelap dengan Neon Pink Accent & Warna Label Sehati
+                // Tema Gelap (Dark Mode)
                 body.className = "bg-[#090d16] text-gray-100 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                
                 themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
                 themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3.5 py-2 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 
-                const adminBtn = document.getElementById('adminBtn');
-                if(!isAdminLoggedIn) {
+                if (!isAdminLoggedIn) {
                     adminBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3.5 py-2 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 }
 
@@ -274,7 +275,6 @@
                 if(tableContainer) tableContainer.className = "px-3 sm:px-6 py-3 sm:py-4 bg-[#0d121d]/95 border-t border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 transition-colors duration-300";
                 if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[9px] sm:text-[11px] font-extrabold tracking-wider transition-colors duration-300";
                 
-                // Kad Ringkasan & Warna Label Diselaraskan dengan Nilai Harga
                 if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-[#ff2a85] transition-colors duration-300";
                 if(labelCard1) labelCard1.className = "text-[9px] sm:text-[11px] font-bold text-[#ff6b81] uppercase tracking-tight sm:tracking-wider leading-tight";
 
@@ -288,13 +288,13 @@
                 if(tableTitle) tableTitle.className = "text-sm sm:text-lg font-bold text-gray-100";
 
             } else {
-                // Tema Asal (Matcha Strawberry)
+                // Tema Asal (Light Mode)
                 body.className = "bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                
                 themeBtn.innerHTML = "🌙 <span>Dark Mode</span>";
                 themeBtn.className = "text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 
-                const adminBtn = document.getElementById('adminBtn');
-                if(!isAdminLoggedIn) {
+                if (!isAdminLoggedIn) {
                     adminBtn.className = "text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 }
 
