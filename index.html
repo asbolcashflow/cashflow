@@ -509,7 +509,6 @@
                 applyFilters();
             } catch (error) {
                 console.error('Ralat memuatkan data:', error);
-                // Pastikan butang paging dikunci jika gagal muat data
                 document.getElementById('prevBtn').disabled = true;
                 document.getElementById('nextBtn').disabled = true;
             }
@@ -602,7 +601,6 @@
                 thAction.classList.add('hidden');
             }
 
-            // Jika tiada data, letak mesej kosong dan KUNCI butang paging sepenuhnya
             if (filteredTransactions.length === 0) {
                 let colspan = isAdminLoggedIn ? 10 : 9;
                 tbody.innerHTML = `<tr><td colspan="${colspan}" class="text-center py-6 text-gray-400">Tiada transaksi sepadan ditemui.</td></tr>`;
@@ -783,14 +781,14 @@
                     headStyles: { fillColor: [45, 106, 79], textColor: [255, 255, 255], fontStyle: 'bold' },
                     styles: { fontSize: 8, cellPadding: 2.5, overflow: 'linebreak' },
                     columnStyles: {
-                        0: { cellWidth: 10, halign: 'center' },
-                        1: { cellWidth: 24 },
-                        2: { cellWidth: 20 },
+                        0: { cellWidth: 9, halign: 'center' },
+                        1: { cellWidth: 23 },
+                        2: { cellWidth: 19 },
                         3: { cellWidth: 22 },
-                        4: { cellWidth: 21, halign: 'center' },
-                        5: { cellWidth: 20, halign: 'right' },
-                        6: { cellWidth: 20, halign: 'right' },
-                        7: { cellWidth: 20, halign: 'right' },
+                        4: { cellWidth: 18, halign: 'center' },
+                        5: { cellWidth: 22, halign: 'right' },
+                        6: { cellWidth: 22, halign: 'right' },
+                        7: { cellWidth: 22, halign: 'right' },
                         8: { cellWidth: 'auto' }
                     },
                     didDrawPage: function (data) {
