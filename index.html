@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cashflow Flip Barang</title>
+    <!-- Tailwind CSS untuk rekaan moden -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans p-6">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">🚀 Dashboard Cashflow Flip Barang</h1>
+        
+        <!-- Kad Ringkasan (Summary Cards) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+                <p class="text-sm text-gray-500 font-medium">Total Modal Keluar</p>
+                <p id="totalKeluar" class="text-2xl font-bold text-red-600 mt-2">RM 0.00</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+                <p class="text-sm text-gray-500 font-medium">Total Terjual (Pendapatan)</p>
+                <p id="totalTerjual" class="text-2xl font-bold text-blue-600 mt-2">RM 0.00</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                <p class="text-sm text-gray-500 font-medium">Jumlah Untung Bersih</p>
+                <p id="jumlahUntung" class="text-2xl font-bold text-green-600 mt-2">RM 0.00</p>
+            </div>
+        </div>
+
+        <!-- Jadual Senarai Transaksi -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold text-gray-800">Senarai Transaksi Terkini</h2>
+                <button onclick="fetchData()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">Muat Semula</button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 uppercase text-xs tracking-wider">
+                            <th class="py-3 px-6">Tarikh</th>
+                            <th class="py-3 px-6">Kategori</th>
+                            <th class="py-3 px-6">Nama Barang</th>
+                            <th class="py-3 px-6">Payment</th>
+                            <th class="py-3 px-6">Modal (RM)</th>
+                            <th class="py-3 px-6">Terjual (RM)</th>
+                            <th class="py-3 px-6">Untung (RM)</th>
+                            <th class="py-3 px-6">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-gray-200 text-sm text-gray-700">
+                        <!-- Data akan dimasukkan di sini secara automatik -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI BAWAH:
+        const WEB_APP_URL = "MASUKKAN_URL_WEB_APP_ANDA_DI_SINI";
+
+        async function fetchData() {
+            try {
+                const response = await fetch(WEB_APP_URL);
+                const data = await response.json();
+
+                // Paparkan nilai ringkasan (summary)
+                document.getElementById('totalKeluar').innerText = `RM ${parseFloat(data.summary.totalKeluar).toFixed(2)}`;
+                document.getElementById('totalTerjual').innerText = `RM ${parseFloat(data.summary.totalTerjual).toFixed(2)}`;
+                document.getElementById('jumlahUntung').innerText = `RM ${parseFloat(data.summary.jumlahUntung).toFixed(2)}`;
+
+                // Paparkan senarai transaksi dalam jadual
+                const tbody = document.getElementById('tableBody');
+                tbody.innerHTML = '';
+
+                if (data.transactions.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-gray-400">Tiada transaksi lagi.</td></tr>`;
+                    return;
+                }
+
+                data.transactions.forEach(tx => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="py-3 px-6 whitespace-nowrap">${tx.tarikh}</td>
+                        <td class="py-3 px-6"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">${tx.kategori}</span></td>
+                        <td class="py-3 px-6 font-medium text-gray-900">${tx.namaBarang}</td>
+                        <td class="py-3 px-6">${tx.paymentMethod}</td>
+                        <td class="py-3 px-6 text-red-600 font-semibold">${tx.amountKeluar}</td>
+                        <td class="py-3 px-6 text-blue-600 font-semibold">${tx.amountTerjual}</td>
+                        <td class="py-3 px-6 text-green-600 font-bold">${tx.untungBersih}</td>
+                        <td class="py-3 px-6 text-gray-500">${tx.notes || '-'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Ralat memuatkan data:', error);
+            }
+        }
+
+        // Panggil fungsi semasa mula-mula buka laman web
+        fetchData();
+
+        // Auto-refresh setiap 30 saat supaya sentiasa real-time
+        setInterval(fetchData, 30000);
+    </script>
+</body>
+</html>
