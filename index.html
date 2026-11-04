@@ -31,7 +31,7 @@
         }
     </style>
 </head>
-<body class="bg-[#FFF5F7] text-gray-800 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden">
+<body id="pageBody" class="bg-[#FFF5F7] text-gray-800 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300">
 
     <!-- Efek Latar Belakang Strawberry Jatuh -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -46,8 +46,8 @@
 
     <div class="max-w-7xl mx-auto relative z-10">
         
-        <!-- Header: Kiri (Logo + Tajuk), Kanan (Admin Login di atas Jam Malaysia) -->
-        <div class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
+        <!-- Header: Kiri (Logo + Tajuk), Kanan (Theme Switch + Admin Login + Jam Malaysia) -->
+        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300">
             
             <!-- Bahagian Kiri: Logo + Tajuk -->
             <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full lg:w-auto text-center sm:text-left">
@@ -60,13 +60,21 @@
                 </div>
             </div>
 
-            <!-- Bahagian Kanan: Admin Login di atas Jam Waktu Malaysia -->
+            <!-- Bahagian Kanan: Tombol Tema, Admin Login & Jam Waktu Malaysia -->
             <div class="flex flex-col items-end gap-2 w-full lg:w-auto">
-                <button id="adminBtn" onclick="toggleAdminModal()" class="w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
-                    🔐 Admin Login
-                </button>
+                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                    <!-- Suis Dark/Light Theme -->
+                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
+                        🌙 Dark Mode
+                    </button>
+                    <!-- Butang Admin Login -->
+                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm">
+                        🔐 Admin Login
+                    </button>
+                </div>
 
-                <div class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0">
+                <!-- Jam Waktu Malaysia + Live Indicator -->
+                <div id="clockBox" class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="relative flex h-2.5 w-2.5">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -84,24 +92,24 @@
         
         <!-- Kad Ringkasan (Summary Cards) -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6]">
+            <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
                 <p class="text-[11px] font-bold text-[#9B2226] uppercase tracking-wider">Total Modal Keluar</p>
                 <p id="totalKeluar" class="text-xl sm:text-2xl font-black text-[#AE2012] mt-1">RM 0.00</p>
             </div>
-            <div class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7]">
+            <div id="card2" class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300">
                 <p class="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">Total Terjual</p>
                 <p id="totalTerjual" class="text-xl sm:text-2xl font-black text-[#2D6A4F] mt-1">RM 0.00</p>
             </div>
-            <div class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white">
+            <div id="card3" class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white transition-colors duration-300">
                 <p class="text-[11px] font-bold text-[#D8F3DC] uppercase tracking-wider">Total Untung Bersih</p>
                 <p id="jumlahUntung" class="text-xl sm:text-2xl font-black text-[#95D5B2] mt-1">RM 0.00</p>
             </div>
         </div>
 
         <!-- Bahagian Filter Bar & Tombol PDF -->
-        <div class="bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+        <div id="filterBox" class="bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300">
             <div>
-                <label class="block text-xs font-bold text-gray-600 mb-1">🔍 Filter Masa:</label>
+                <label class="block text-xs font-bold text-gray-500 mb-1">🔍 Filter Masa:</label>
                 <select id="filterTime" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
                     <option value="all">Semua Masa</option>
                     <option value="week">Minggu Ini (7 Hari Lepas)</option>
@@ -110,13 +118,13 @@
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-bold text-gray-600 mb-1">🏷️ Filter Kategori:</label>
+                <label class="block text-xs font-bold text-gray-500 mb-1">🏷️ Filter Kategori:</label>
                 <select id="filterCategory" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
                     <option value="all">Semua Kategori</option>
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-bold text-gray-600 mb-1">💳 Filter Payment:</label>
+                <label class="block text-xs font-bold text-gray-500 mb-1">💳 Filter Payment:</label>
                 <select id="filterPayment" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
                     <option value="all">Semua Payment</option>
                     <option value="QR">QR</option>
@@ -132,8 +140,8 @@
         </div>
 
         <!-- Jadual Senarai Transaksi -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6">
-            <div class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3">
+        <div id="tableBox" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300">
+            <div id="tableHeader" class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
                 <h2 class="text-base sm:text-lg font-bold text-gray-700">Senarai Transaksi Terkini</h2>
                 <button onclick="refreshPage()" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] transition shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
                     🔄 Refresh
@@ -162,7 +170,7 @@
             </div>
             
             <!-- Pagination Controls -->
-            <div class="px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div id="tableContainer" class="px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300">
                 <button id="prevBtn" onclick="changePage(-1)" class="w-full sm:w-auto bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">← Sebelumnya</button>
                 <span id="pageIndicator" class="text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
                 <button id="nextBtn" onclick="changePage(1)" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition">Seterusnya →</button>
@@ -228,16 +236,52 @@
         let currentPage = 1;
         const rowsPerPage = 10;
         let isAdminLoggedIn = false;
+        let isDarkMode = false;
 
         function refreshPage() {
             location.reload();
+        }
+
+        // Fungsi Tukar Tema Dark / Light
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            const body = document.getElementById('pageBody');
+            const themeBtn = document.getElementById('themeToggleBtn');
+            const headerBox = document.getElementById('headerBox');
+            const filterBox = document.getElementById('filterBox');
+            const tableBox = document.getElementById('tableBox');
+            const tableHeader = document.getElementById('tableHeader');
+            const tableContainer = document.getElementById('tableContainer');
+
+            if (isDarkMode) {
+                body.className = "bg-[#121814] text-gray-100 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                themeBtn.innerHTML = "☀️ Light Mode";
+                themeBtn.className = "text-xs bg-amber-500/20 text-amber-300 px-4 py-2.5 rounded-xl font-bold hover:bg-amber-500/30 transition shadow-sm";
+                
+                if(headerBox) headerBox.className = "bg-[#1E2923]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#2D6A4F] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
+                if(filterBox) filterBox.className = "bg-[#1E2923]/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#2D6A4F] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
+                if(tableBox) tableBox.className = "bg-[#1E2923]/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#2D6A4F] overflow-hidden mb-6 transition-colors duration-300";
+                if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-[#2D6A4F] flex flex-col sm:flex-row justify-between items-center bg-[#16201B]/95 gap-3 transition-colors duration-300";
+                if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#16201B]/95 border-t border-[#2D6A4F] flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
+            } else {
+                body.className = "bg-[#FFF5F7] text-gray-800 p-3 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
+                themeBtn.innerHTML = "🌙 Dark Mode";
+                themeBtn.className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm";
+                
+                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
+                if(filterBox) filterBox.className = "bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
+                if(tableBox) tableBox.className = "bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300";
+                if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300";
+                if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
+            }
+            renderTable();
         }
 
         function toggleAdminModal() {
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
                 document.getElementById('adminBtn').innerText = "🔐 Admin Login";
-                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm";
+                document.getElementById('adminBtn').className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm";
                 alert("Anda telah Log Out dari Mod Admin.");
                 renderTable();
                 return;
@@ -256,7 +300,7 @@
                 document.getElementById('adminPass').value = "";
                 
                 document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
-                document.getElementById('adminBtn').className = "w-full sm:w-auto text-xs bg-red-100 text-red-700 px-4 py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm";
+                document.getElementById('adminBtn').className = "text-xs bg-red-100 text-red-700 px-4 py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm";
                 
                 alert("Log Masuk Admin Berjaya!");
                 renderTable();
@@ -419,16 +463,16 @@
             pageData.forEach((tx, index) => {
                 const actualIndex = startIdx + index + 1;
                 const row = document.createElement('tr');
-                row.className = "hover:bg-[#FFF5F7]/50 transition";
+                row.className = isDarkMode ? "hover:bg-[#25332B] transition text-gray-200" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
                 
                 let actionTd = isAdminLoggedIn ? `<td class="py-3.5 px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-red-600 transition">Padam</button></td>` : '';
 
                 row.innerHTML = `
                     <td class="py-3.5 px-4 text-center font-bold text-gray-400 text-xs">${actualIndex}</td>
-                    <td class="py-3.5 px-4 whitespace-nowrap text-gray-500 text-xs">${tx.tarikh}</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-xs">${tx.tarikh}</td>
                     <td class="py-3.5 px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-2 py-1 rounded-xl text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
-                    <td class="py-3.5 px-4 font-extrabold text-gray-800">${tx.namaBarang}</td>
-                    <td class="py-3.5 px-4"><span class="text-[10px] font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
+                    <td class="py-3.5 px-4 font-extrabold">${tx.namaBarang}</td>
+                    <td class="py-3.5 px-4"><span class="text-[10px] font-semibold bg-gray-500/10 px-2 py-0.5 rounded-lg">${tx.paymentMethod}</span></td>
                     <td class="py-3.5 px-4 text-[#AE2012] font-bold">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
                     <td class="py-3.5 px-4 text-[#2D6A4F] font-bold">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
                     <td class="py-3.5 px-4 text-[#1B4332] font-black">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
@@ -502,7 +546,6 @@
                 return;
             }
 
-            // Dapatkan tarikh mula dan akhir untuk paparan laporan
             let dates = pdfData.map(tx => new Date((tx.tarikh || '').replace(' at ', ' '))).filter(d => !isNaN(d));
             let startDateStr = "-";
             let endDateStr = "-";
@@ -513,7 +556,6 @@
                 endDateStr = maxDate.toLocaleDateString('ms-MY', { day: '2-digit', month: 'short', year: 'numeric' });
             }
 
-            // Kira total untuk PDF
             let pdfKeluar = 0, pdfTerjual = 0, pdfUntung = 0;
             pdfData.forEach(tx => {
                 pdfKeluar += parseFloat(tx.amountKeluar || 0);
@@ -524,34 +566,34 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Logo Asbol Lebih Besar di Tengah Atas
+            // Cuba muat turun logo dengan try-catch agar fungsi PDF tidak terhenti jika CORS block
             try {
                 const logoBase64 = await getBase64Image("https://i.ibb.co/wNmYjgWP/asbol.png");
-                doc.addImage(logoBase64, 'PNG', 85, 10, 40, 40);
+                doc.addImage(logoBase64, 'PNG', 82, 10, 46, 46);
             } catch (e) {
-                console.log("Gagal muat logo untuk PDF");
+                console.log("Logo gagal dimuatkan untuk PDF, meneruskan tanpa logo.");
             }
 
             // Tajuk Asbol Syndicate & Report Tarikh Dinamik
-            doc.setFontSize(18);
+            doc.setFontSize(20);
             doc.setTextColor(45, 106, 79);
-            doc.text("Asbol Syndicate", 105, 55, { align: "center" });
+            doc.text("Asbol Syndicate", 105, 62, { align: "center" });
 
             doc.setFontSize(11);
-            doc.setTextColor(80, 80, 80);
-            doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 62, { align: "center" });
+            doc.setTextColor(90, 90, 90);
+            doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 69, { align: "center" });
 
-            // Design Kotak Summary / Total yang Menarik
-            doc.setFillColor(248, 249, 250);
-            doc.setLineColor(218, 226, 229);
-            doc.roundedRect(14, 68, 182, 22, 3, 3, 'FD');
+            // Design Kotak Summary / Total yang Menarik & Kemas
+            doc.setFillColor(245, 247, 246);
+            doc.setLineColor(200, 215, 205);
+            doc.roundedRect(14, 76, 182, 24, 3, 3, 'FD');
 
             doc.setFontSize(9);
-            doc.setTextColor(60, 60, 60);
-            doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, 77);
-            doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, 84);
-            doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, 84);
-            doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, 84);
+            doc.setTextColor(50, 50, 50);
+            doc.text(`Jumlah Transaksi: ${pdfData.length}`, 20, 85);
+            doc.text(`Total Modal: RM ${pdfKeluar.toFixed(2)}`, 20, 93);
+            doc.text(`Total Terjual: RM ${pdfTerjual.toFixed(2)}`, 85, 93);
+            doc.text(`Total Untung: RM ${pdfUntung.toFixed(2)}`, 145, 93);
 
             const rows = pdfData.map((tx, idx) => {
                 let cleanDate = (tx.tarikh || '').replace(' at ', ' - ');
@@ -569,7 +611,7 @@
             });
 
             doc.autoTable({
-                startY: 95,
+                startY: 104,
                 head: [['Bil', 'Tarikh & Masa', 'Kategori', 'Barang', 'Payment', 'Modal', 'Terjual', 'Untung', 'Notes']],
                 body: rows,
                 theme: 'grid',
@@ -577,8 +619,8 @@
                 styles: { fontSize: 8, cellPadding: 2.5, overflow: 'linebreak' },
                 columnStyles: {
                     0: { cellWidth: 10, halign: 'center' },
-                    1: { cellWidth: 32 }, // Lebar tarikh & masa diluaskan supaya jelas
-                    2: { cellWidth: 22 }, // Kategori diasingkan dengan betul
+                    1: { cellWidth: 32 },
+                    2: { cellWidth: 22 },
                     3: { cellWidth: 25 },
                     4: { cellWidth: 16, halign: 'center' },
                     5: { cellWidth: 22, halign: 'right' },
