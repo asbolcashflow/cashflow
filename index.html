@@ -47,15 +47,15 @@
     <div class="max-w-7xl mx-auto relative z-10">
         
         <!-- Header: Kiri (Logo + Tajuk), Kanan (Theme Switch + Admin Login + Jam Malaysia) -->
-        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300">
+        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4 transition-colors duration-300">
             
-            <!-- Bahagian Kiri: Logo + Tajuk -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full lg:w-auto text-center sm:text-left">
-                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-24 sm:h-28 md:h-32 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
+            <!-- Bahagian Kiri: Logo (Besar di Mobile) + Tajuk -->
+            <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 w-full lg:w-auto text-center sm:text-left">
+                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-32 sm:h-32 md:h-36 w-auto object-contain shrink-0 drop-shadow-md" onerror="this.style.display='none'">
                 <div>
                     <div class="flex items-center justify-center sm:justify-start gap-2">
-                        <span class="text-xl sm:text-2xl">🍵🍓</span>
-                        <h1 class="text-lg sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
+                        <span class="text-lg sm:text-2xl">🍵🍓</span>
+                        <h1 class="text-base sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
                     </div>
                 </div>
             </div>
@@ -64,53 +64,53 @@
             <div class="flex flex-col items-end gap-2 w-full lg:w-auto">
                 <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
                     <!-- Suis Dark/Light Theme yang Interaktif -->
-                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5">
+                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2 rounded-xl sm:py-2.5 font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5">
                         🌙 <span>Dark Mode</span>
                     </button>
                     <!-- Butang Admin Login -->
-                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer">
+                    <button id="adminBtn" onclick="toggleAdminModal()" class="text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2 rounded-xl sm:py-2.5 font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer">
                         🔐 Admin Login
                     </button>
                 </div>
 
                 <!-- Jam Waktu Malaysia + Live Indicator -->
-                <div id="clockBox" class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0 transition-colors duration-300">
+                <div id="clockBox" class="bg-[#D8F3DC]/95 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-2 sm:gap-3 shadow-inner w-full sm:w-[260px] shrink-0 transition-colors duration-300">
                     <div class="flex items-center gap-2">
-                        <span class="relative flex h-2.5 w-2.5">
+                        <span class="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.3)]"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.3)]"></span>
                         </span>
-                        <span class="text-lg">🇲🇾</span>
+                        <span class="text-sm sm:text-lg">🇲🇾</span>
                     </div>
                     <div>
-                        <p class="text-[9px] uppercase tracking-wider text-[#2D6A4F] font-bold">Waktu Malaysia (MYT)</p>
-                        <p id="malaysiaClock" class="text-xs sm:text-sm font-extrabold text-[#1B4332] whitespace-nowrap">Memuatkan masa...</p>
+                        <p class="text-[8px] sm:text-[9px] uppercase tracking-wider text-[#2D6A4F] font-bold">Waktu Malaysia (MYT)</p>
+                        <p id="malaysiaClock" class="text-[11px] sm:text-sm font-extrabold text-[#1B4332] whitespace-nowrap">Memuatkan masa...</p>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Kad Ringkasan (Summary Cards) -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
-                <p class="text-[11px] font-bold text-[#9B2226] uppercase tracking-wider" id="labelCard1">Total Modal Keluar</p>
-                <p id="totalKeluar" class="text-xl sm:text-2xl font-black text-[#AE2012] mt-1">RM 0.00</p>
+        <!-- Kad Ringkasan (Summary Cards) - Sebaris di Mobile -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
+            <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
+                <p class="text-[9px] sm:text-[11px] font-bold text-[#9B2226] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard1">Total Modal Keluar</p>
+                <p id="totalKeluar" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#AE2012] mt-1 truncate">RM 0.00</p>
             </div>
-            <div id="card2" class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300">
-                <p class="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider" id="labelCard2">Total Terjual</p>
-                <p id="totalTerjual" class="text-xl sm:text-2xl font-black text-[#2D6A4F] mt-1">RM 0.00</p>
+            <div id="card2" class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300">
+                <p class="text-[9px] sm:text-[11px] font-bold text-[#1B4332] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard2">Total Terjual</p>
+                <p id="totalTerjual" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#2D6A4F] mt-1 truncate">RM 0.00</p>
             </div>
-            <div id="card3" class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white transition-colors duration-300">
-                <p class="text-[11px] font-bold text-[#D8F3DC] uppercase tracking-wider" id="labelCard3">Total Untung Bersih</p>
-                <p id="jumlahUntung" class="text-xl sm:text-2xl font-black text-[#95D5B2] mt-1">RM 0.00</p>
+            <div id="card3" class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm text-white transition-colors duration-300">
+                <p class="text-[9px] sm:text-[11px] font-bold text-[#D8F3DC] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard3">Total Untung Bersih</p>
+                <p id="jumlahUntung" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#95D5B2] mt-1 truncate">RM 0.00</p>
             </div>
         </div>
 
-        <!-- Bahagian Filter Bar & Tombol PDF -->
-        <div id="filterBox" class="bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300">
+        <!-- Bahagian Filter Bar & Tombol PDF (Kompak) -->
+        <div id="filterBox" class="bg-white/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300">
             <div>
-                <label class="block text-xs font-bold text-gray-500 mb-1" id="labelTime">🔍 Filter Masa:</label>
-                <select id="filterTime" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                <label class="block text-[10px] sm:text-xs font-bold text-gray-500 mb-1" id="labelTime">🔍 Filter Masa:</label>
+                <select id="filterTime" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-[11px] sm:text-xs rounded-xl p-2 sm:p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
                     <option value="all">Semua Masa</option>
                     <option value="week">Minggu Ini (7 Hari Lepas)</option>
                     <option value="month">Bulan Ini</option>
@@ -118,14 +118,14 @@
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-bold text-gray-500 mb-1" id="labelCat">🏷️ Filter Kategori:</label>
-                <select id="filterCategory" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                <label class="block text-[10px] sm:text-xs font-bold text-gray-500 mb-1" id="labelCat">🏷️ Filter Kategori:</label>
+                <select id="filterCategory" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-[11px] sm:text-xs rounded-xl p-2 sm:p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
                     <option value="all">Semua Kategori</option>
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-bold text-gray-500 mb-1" id="labelPay">💳 Filter Payment:</label>
-                <select id="filterPayment" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-xs rounded-xl p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
+                <label class="block text-[10px] sm:text-xs font-bold text-gray-500 mb-1" id="labelPay">💳 Filter Payment:</label>
+                <select id="filterPayment" onchange="applyFilters()" class="w-full bg-[#FFF5F7] border border-[#FFCCD5] text-gray-700 text-[11px] sm:text-xs rounded-xl p-2 sm:p-2.5 font-medium outline-none focus:ring-2 focus:ring-[#2D6A4F]">
                     <option value="all">Semua Payment</option>
                     <option value="QR">QR</option>
                     <option value="Cash">Cash</option>
@@ -133,47 +133,47 @@
                 </select>
             </div>
             <div>
-                <button onclick="openPdfModal()" class="w-full bg-[#AE2012] text-white p-2.5 rounded-xl text-xs font-bold hover:bg-[#9B2226] active:scale-95 transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                <button onclick="openPdfModal()" class="w-full bg-[#AE2012] text-white p-2 sm:p-2.5 rounded-xl text-[11px] sm:text-xs font-bold hover:bg-[#9B2226] active:scale-95 transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
                     📄 Download PDF
                 </button>
             </div>
         </div>
 
-        <!-- Jadual Senarai Transaksi (Dioptimumkan untuk Mobile agar lebih padat) -->
+        <!-- Jadual Senarai Transaksi (Dioptimumkan agar lebih padat dan luas) -->
         <div id="tableBox" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300">
-            <div id="tableHeader" class="px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
-                <h2 class="text-base sm:text-lg font-bold text-gray-700" id="tableTitle">Senarai Transaksi Terkini</h2>
-                <button onclick="refreshPage()" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#1B4332] active:scale-95 transition shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
+            <div id="tableHeader" class="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
+                <h2 class="text-sm sm:text-lg font-bold text-gray-700" id="tableTitle">Senarai Transaksi Terkini</h2>
+                <button onclick="refreshPage()" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold hover:bg-[#1B4332] active:scale-95 transition shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
                     🔄 Refresh
                 </button>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse min-w-[650px]">
                     <thead>
-                        <tr id="tableHeadTr" class="bg-[#FFF0F3] text-gray-600 uppercase text-[10px] sm:text-[11px] tracking-wider transition-colors duration-300">
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold text-center">Bil</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Tarikh</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Kategori</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Nama Barang</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Payment</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Modal</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Terjual</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Untung</th>
-                            <th class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold">Notes</th>
-                            <th id="thAction" class="py-2.5 px-2 sm:py-3.5 sm:px-4 font-bold text-center hidden">Tindakan</th>
+                        <tr id="tableHeadTr" class="bg-[#FFF0F3] text-gray-600 uppercase text-[9px] sm:text-[11px] tracking-wider transition-colors duration-300">
+                            <th class="py-2 px-1.5 sm:py-3.5 sm:px-4 font-bold text-center">Bil</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Tarikh</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Kategori</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Nama Barang</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Payment</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Modal</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Terjual</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Untung</th>
+                            <th class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold">Notes</th>
+                            <th id="thAction" class="py-2 px-2 sm:py-3.5 sm:px-4 font-bold text-center hidden">Tindakan</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y divide-gray-100 text-[11px] sm:text-sm text-gray-700">
+                    <tbody id="tableBody" class="divide-y divide-gray-100 text-[10px] sm:text-sm text-gray-700">
                         <!-- Data akan dimasukkan di sini secara automatik -->
                     </tbody>
                 </table>
             </div>
             
             <!-- Pagination Controls -->
-            <div id="tableContainer" class="px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300">
-                <button id="prevBtn" onclick="changePage(-1)" class="w-full sm:w-auto bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition cursor-pointer">← Sebelumnya</button>
-                <span id="pageIndicator" class="text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
-                <button id="nextBtn" onclick="changePage(1)" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 transition cursor-pointer">Seterusnya →</button>
+            <div id="tableContainer" class="px-3 sm:px-6 py-3 sm:py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 transition-colors duration-300">
+                <button id="prevBtn" onclick="changePage(-1)" class="w-full sm:w-auto bg-gray-200 text-gray-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold disabled:opacity-40 transition cursor-pointer">← Sebelumnya</button>
+                <span id="pageIndicator" class="text-[11px] sm:text-xs font-bold text-gray-600">Halaman 1 dari 1</span>
+                <button id="nextBtn" onclick="changePage(1)" class="w-full sm:w-auto bg-[#2D6A4F] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold disabled:opacity-40 transition cursor-pointer">Seterusnya →</button>
             </div>
         </div>
     </div>
@@ -263,41 +263,41 @@
                 // Tema Gelap dengan Neon Pink Accent yang Menarik & Jelas
                 body.className = "bg-[#090d16] text-gray-100 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
                 themeBtn.innerHTML = "☀️ <span>Light Mode</span>";
-                themeBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5";
+                themeBtn.className = "text-[11px] sm:text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5";
                 
-                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
-                if(filterBox) filterBox.className = "bg-[#111827]/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-lg border-2 border-[#ff2a85]/60 mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4 transition-colors duration-300";
+                if(filterBox) filterBox.className = "bg-[#111827]/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-lg border-2 border-[#ff2a85]/60 mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-[#111827]/95 backdrop-blur-sm rounded-3xl shadow-xl border-2 border-[#ff2a85]/60 overflow-hidden mb-6 transition-colors duration-300";
-                if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center bg-[#0d121d]/95 gap-3 transition-colors duration-300";
-                if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#0d121d]/95 border-t border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
-                if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[10px] sm:text-[11px] font-extrabold tracking-wider transition-colors duration-300";
+                if(tableHeader) tableHeader.className = "px-3 sm:px-6 py-3 sm:py-4 border-b border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center bg-[#0d121d]/95 gap-3 transition-colors duration-300";
+                if(tableContainer) tableContainer.className = "px-3 sm:px-6 py-3 sm:py-4 bg-[#0d121d]/95 border-t border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 transition-colors duration-300";
+                if(tableHeadTr) tableHeadTr.className = "bg-[#ff2a85]/15 text-[#ff2a85] uppercase text-[9px] sm:text-[11px] font-extrabold tracking-wider transition-colors duration-300";
                 
-                if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-[#ff2a85] transition-colors duration-300";
-                if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-emerald-400 transition-colors duration-300";
-                if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-4 rounded-2xl shadow-md border-2 border-cyan-400 transition-colors duration-300 text-white";
+                if(card1) card1.className = "bg-gradient-to-br from-[#1f1624] to-[#2a1b2d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-[#ff2a85] transition-colors duration-300";
+                if(card2) card2.className = "bg-gradient-to-br from-[#12221e] to-[#16332a] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-emerald-400 transition-colors duration-300";
+                if(card3) card3.className = "bg-gradient-to-br from-[#122026] to-[#15343d] backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md border-2 border-cyan-400 transition-colors duration-300 text-white";
                 
-                if(mainTitle) mainTitle.className = "text-lg sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)]";
-                if(tableTitle) tableTitle.className = "text-base sm:text-lg font-bold text-gray-100";
+                if(mainTitle) mainTitle.className = "text-base sm:text-2xl md:text-3xl font-extrabold text-[#ff2a85] tracking-tight drop-shadow-[0_0_10px_rgba(255,42,133,0.6)]";
+                if(tableTitle) tableTitle.className = "text-sm sm:text-lg font-bold text-gray-100";
 
             } else {
                 // Tema Asal (Matcha Strawberry)
                 body.className = "bg-[#FFF5F7] text-gray-800 p-2 sm:p-4 md:p-6 min-h-screen relative overflow-x-hidden transition-colors duration-300";
                 themeBtn.innerHTML = "🌙 <span>Dark Mode</span>";
-                themeBtn.className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] border border-[#2D6A4F]/30 px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm cursor-pointer flex items-center gap-1.5";
+                themeBtn.className = "text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] border border-[#2D6A4F]/30 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 active:scale-95 transition shadow-sm cursor-pointer flex items-center gap-1.5";
                 
-                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 transition-colors duration-300";
-                if(filterBox) filterBox.className = "bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-3 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4 transition-colors duration-300";
+                if(filterBox) filterBox.className = "bg-white/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300";
-                if(tableHeader) tableHeader.className = "px-4 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300";
-                if(tableContainer) tableContainer.className = "px-4 sm:px-6 py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3 transition-colors duration-300";
-                if(tableHeadTr) tableHeadTr.className = "bg-[#FFF0F3] text-gray-600 uppercase text-[10px] sm:text-[11px] tracking-wider transition-colors duration-300";
+                if(tableHeader) tableHeader.className = "px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300";
+                if(tableContainer) tableContainer.className = "px-3 sm:px-6 py-3 sm:py-4 bg-[#FFFAFA]/95 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 transition-colors duration-300";
+                if(tableHeadTr) tableHeadTr.className = "bg-[#FFF0F3] text-gray-600 uppercase text-[9px] sm:text-[11px] tracking-wider transition-colors duration-300";
                 
-                if(card1) card1.className = "bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300";
-                if(card2) card2.className = "bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300";
-                if(card3) card3.className = "bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-4 rounded-2xl shadow-sm text-white transition-colors duration-300";
+                if(card1) card1.className = "bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300";
+                if(card2) card2.className = "bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300";
+                if(card3) card3.className = "bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm text-white transition-colors duration-300";
                 
-                if(mainTitle) mainTitle.className = "text-lg sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight";
-                if(tableTitle) tableTitle.className = "text-base sm:text-lg font-bold text-gray-700";
+                if(mainTitle) mainTitle.className = "text-base sm:text-2xl md:text-3xl font-extrabold text-[#2D6A4F] tracking-tight";
+                if(tableTitle) tableTitle.className = "text-sm sm:text-lg font-bold text-gray-700";
             }
             renderTable();
         }
@@ -306,7 +306,7 @@
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
                 document.getElementById('adminBtn').innerText = "🔐 Admin Login";
-                document.getElementById('adminBtn').className = "text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer";
+                document.getElementById('adminBtn').className = "text-[11px] sm:text-xs bg-[#2D6A4F]/10 text-[#2D6A4F] px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-[#2D6A4F]/20 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer";
                 alert("Anda telah Log Out dari Mod Admin.");
                 renderTable();
                 return;
@@ -325,7 +325,7 @@
                 document.getElementById('adminPass').value = "";
                 
                 document.getElementById('adminBtn').innerText = "🔓 Admin (ON - Logout)";
-                document.getElementById('adminBtn').className = "text-xs bg-red-100 text-red-700 px-3 sm:px-4 py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm border border-red-300 cursor-pointer";
+                document.getElementById('adminBtn').className = "text-[11px] sm:text-xs bg-red-100 text-red-700 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-bold hover:bg-red-200 transition shadow-sm border border-red-300 cursor-pointer";
                 
                 alert("Log Masuk Admin Berjaya!");
                 renderTable();
@@ -490,18 +490,18 @@
                 const row = document.createElement('tr');
                 row.className = isDarkMode ? "hover:bg-[#1f2937] transition text-gray-200 border-b border-[#ff2a85]/20" : "hover:bg-[#FFF5F7]/50 transition text-gray-700";
                 
-                let actionTd = isAdminLoggedIn ? `<td class="py-2 px-2 sm:py-3.5 sm:px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
+                let actionTd = isAdminLoggedIn ? `<td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center"><button onclick="deleteRow(${tx.rowIndex})" class="bg-red-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[9px] sm:text-xs font-bold hover:bg-red-600 transition cursor-pointer">Padam</button></td>` : '';
 
                 row.innerHTML = `
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-center font-bold text-gray-400 text-[10px] sm:text-xs">${actualIndex}</td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 whitespace-nowrap text-[10px] sm:text-xs">${tx.tarikh}</td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-xl text-[9px] sm:text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 font-extrabold text-[11px] sm:text-sm">${tx.namaBarang}</td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4"><span class="text-[9px] sm:text-[10px] font-semibold bg-gray-500/10 px-1.5 py-0.5 sm:px-2 rounded-lg">${tx.paymentMethod}</span></td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-[#AE2012] font-bold text-[11px] sm:text-sm">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-[#2D6A4F] font-bold text-[11px] sm:text-sm">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-[#1B4332] font-black text-[11px] sm:text-sm">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
-                    <td class="py-2 px-2 sm:py-3.5 sm:px-4 text-gray-400 text-[10px] sm:text-xs">${tx.notes || '-'}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-center font-bold text-gray-400 text-[9px] sm:text-xs">${actualIndex}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 whitespace-nowrap text-[9px] sm:text-xs">${tx.tarikh}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4"><span class="bg-[#E8F5E9] text-[#2D6A4F] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-xl text-[8px] sm:text-[10px] font-bold border border-[#C8E6C9]">${tx.kategori}</span></td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 font-extrabold text-[10px] sm:text-sm">${tx.namaBarang}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4"><span class="text-[8px] sm:text-[10px] font-semibold bg-gray-500/10 px-1.5 py-0.5 sm:px-2 rounded-lg">${tx.paymentMethod}</span></td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-[#AE2012] font-bold text-[10px] sm:text-sm">RM ${parseFloat(tx.amountKeluar || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-[#2D6A4F] font-bold text-[10px] sm:text-sm">RM ${parseFloat(tx.amountTerjual || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-[#1B4332] font-black text-[10px] sm:text-sm">RM ${parseFloat(tx.untungBersih || 0).toFixed(2)}</td>
+                    <td class="py-1.5 px-1.5 sm:py-3.5 sm:px-4 text-gray-400 text-[9px] sm:text-xs">${tx.notes || '-'}</td>
                     ${actionTd}
                 `;
                 tbody.appendChild(row);
