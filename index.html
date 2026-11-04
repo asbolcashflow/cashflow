@@ -56,22 +56,20 @@
             </button>
         </div>
 
-        <!-- Header: Logo, Tajuk & Jam Malaysia dalam Satu Baris Flex Konsisten -->
-        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300">
-            
-            <!-- Bahagian Kiri: Logo Besar & Tajuk Jelas -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full lg:w-auto text-center sm:text-left">
-                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-32 sm:h-36 md:h-40 w-auto object-contain shrink-0 drop-shadow-lg" onerror="this.style.display='none'">
+        <!-- 1. MAIN DASHBOARD: Header (Logo, Tajuk & Jam Malaysia) -->
+        <div id="headerBox" class="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300">
+            <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 w-full md:w-auto text-center sm:text-left">
+                <img src="https://i.ibb.co/wNmYjgWP/asbol.png" alt="Logo Asbol" class="h-28 sm:h-36 md:h-40 w-auto object-contain shrink-0 drop-shadow-lg mx-auto sm:mx-0" onerror="this.style.display='none'">
                 <div>
                     <div class="flex items-center justify-center sm:justify-start gap-2">
-                        <span class="text-2xl sm:text-3xl">🍵🍓</span>
-                        <h1 class="text-xl sm:text-3xl md:text-4xl font-extrabold text-[#2D6A4F] tracking-tight leading-snug" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
+                        <span class="text-xl sm:text-3xl">🍵🍓</span>
+                        <h1 class="text-lg sm:text-2xl md:text-4xl font-extrabold text-[#2D6A4F] tracking-tight leading-snug" id="mainTitle">Asbol Cashflow Live Dashboard</h1>
                     </div>
                 </div>
             </div>
 
-            <!-- Jam Waktu Malaysia di Kanan (Konsisten Light & Dark Mode) -->
-            <div id="clockBox" class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0 transition-colors duration-300">
+            <!-- Jam Waktu Malaysia -->
+            <div id="clockBox" class="bg-[#D8F3DC]/95 px-4 py-3 rounded-2xl border border-[#B7E4C7] flex items-center gap-3 shadow-inner w-full sm:w-[260px] shrink-0 transition-colors duration-300 justify-center sm:justify-start">
                 <div class="flex items-center gap-2">
                     <span class="relative flex h-2.5 w-2.5">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -85,24 +83,8 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Kad Ringkasan (Summary Cards) - Sebaris di Mobile -->
-        <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
-            <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
-                <p class="text-[9px] sm:text-[11px] font-bold text-[#9B2226] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard1">Total Modal Keluar</p>
-                <p id="totalKeluar" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#AE2012] mt-1 truncate">RM 0.00</p>
-            </div>
-            <div id="card2" class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300">
-                <p class="text-[9px] sm:text-[11px] font-bold text-[#1B4332] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard2">Total Terjual</p>
-                <p id="totalTerjual" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#2D6A4F] mt-1 truncate">RM 0.00</p>
-            </div>
-            <div id="card3" class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm text-white transition-colors duration-300">
-                <p class="text-[9px] sm:text-[11px] font-bold text-[#D8F3DC] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard3">Total Untung Bersih</p>
-                <p id="jumlahUntung" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#95D5B2] mt-1 truncate">RM 0.00</p>
-            </div>
-        </div>
 
-        <!-- Bahagian Filter Bar & Tombol PDF (Kompak) -->
+        <!-- 2. FILTER & PDF DOWNLOAD -->
         <div id="filterBox" class="bg-white/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300">
             <div>
                 <label class="block text-[10px] sm:text-xs font-bold text-gray-500 mb-1" id="labelTime">🔍 Filter Masa:</label>
@@ -135,7 +117,23 @@
             </div>
         </div>
 
-        <!-- Jadual Senarai Transaksi -->
+        <!-- 3. SEMUA TOTAL (Summary Cards) - Sebaris di Mobile -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
+            <div id="card1" class="bg-gradient-to-br from-[#FFE3E8]/95 to-[#FFCCD5]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#FFB3C6] transition-colors duration-300">
+                <p class="text-[9px] sm:text-[11px] font-bold text-[#9B2226] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard1">Total Modal Keluar</p>
+                <p id="totalKeluar" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#AE2012] mt-1 truncate">RM 0.00</p>
+            </div>
+            <div id="card2" class="bg-gradient-to-br from-[#E8F5E9]/95 to-[#C8E6C9]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm border border-[#A5D6A7] transition-colors duration-300">
+                <p class="text-[9px] sm:text-[11px] font-bold text-[#1B4332] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard2">Total Terjual</p>
+                <p id="totalTerjual" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#2D6A4F] mt-1 truncate">RM 0.00</p>
+            </div>
+            <div id="card3" class="bg-gradient-to-br from-[#2D6A4F]/95 to-[#1B4332]/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm text-white transition-colors duration-300">
+                <p class="text-[9px] sm:text-[11px] font-bold text-[#D8F3DC] uppercase tracking-tight sm:tracking-wider leading-tight" id="labelCard3">Total Untung Bersih</p>
+                <p id="jumlahUntung" class="text-[11px] sm:text-xl md:text-2xl font-black text-[#95D5B2] mt-1 truncate">RM 0.00</p>
+            </div>
+        </div>
+
+        <!-- 4. DATA (Jadual Senarai Transaksi) -->
         <div id="tableBox" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300">
             <div id="tableHeader" class="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300">
                 <h2 class="text-sm sm:text-lg font-bold text-gray-700" id="tableTitle">Senarai Transaksi Terkini</h2>
@@ -269,7 +267,7 @@
                     adminBtn.className = "text-xs bg-[#ff2a85]/20 text-[#ff2a85] border-2 border-[#ff2a85] px-3.5 py-2 rounded-xl font-bold hover:bg-[#ff2a85]/30 active:scale-95 transition shadow-[0_0_15px_rgba(255,42,133,0.4)] cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 }
 
-                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-[#111827]/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-xl border-2 border-[#ff2a85] shadow-[0_0_20px_rgba(255,42,133,0.2)] flex flex-col md:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300";
                 if(filterBox) filterBox.className = "bg-[#111827]/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-lg border-2 border-[#ff2a85]/60 mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-[#111827]/95 backdrop-blur-sm rounded-3xl shadow-xl border-2 border-[#ff2a85]/60 overflow-hidden mb-6 transition-colors duration-300";
                 if(tableHeader) tableHeader.className = "px-3 sm:px-6 py-3 sm:py-4 border-b border-[#ff2a85]/40 flex flex-col sm:flex-row justify-between items-center bg-[#0d121d]/95 gap-3 transition-colors duration-300";
@@ -300,7 +298,7 @@
                     adminBtn.className = "text-xs bg-white/90 text-[#2D6A4F] px-3.5 py-2 rounded-xl font-bold hover:bg-white active:scale-95 transition shadow-sm border border-[#2D6A4F]/30 cursor-pointer flex items-center gap-1.5 backdrop-blur-sm";
                 }
 
-                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col lg:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300";
+                if(headerBox) headerBox.className = "bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-sm border border-[#FFCCD5] flex flex-col md:flex-row justify-between items-center mb-4 sm:mb-6 gap-4 transition-colors duration-300";
                 if(filterBox) filterBox.className = "bg-white/95 backdrop-blur-sm p-3 sm:p-5 rounded-3xl shadow-sm border border-[#FFCCD5] mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end transition-colors duration-300";
                 if(tableBox) tableBox.className = "bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-[#FFCCD5] overflow-hidden mb-6 transition-colors duration-300";
                 if(tableHeader) tableHeader.className = "px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-[#FFFAFA]/95 gap-3 transition-colors duration-300";
@@ -479,7 +477,6 @@
             elTerjual.innerText = `RM ${sumTerjual.toFixed(2)}`;
             elUntung.innerText = `RM ${sumUntung.toFixed(2)}`;
 
-            // Sesuaikan warna nilai data kad mengikut Dark / Light Mode supaya sepadan dengan label
             if (isDarkMode) {
                 elKeluar.className = "text-[11px] sm:text-xl md:text-2xl font-black text-[#ff6b81] mt-1 truncate";
                 elTerjual.className = "text-[11px] sm:text-xl md:text-2xl font-black text-[#2ed573] mt-1 truncate";
@@ -565,7 +562,6 @@
             document.getElementById('pdfModal').classList.add('hidden');
         }
 
-        // Fungsi Ambil Imej Logo sebagai Base64 dengan Fetch API (Mengelakkan Isu CORS)
         async function getBase64ImageFromUrl(imageUrl) {
             try {
                 const response = await fetch(imageUrl, { mode: 'cors' });
@@ -582,7 +578,6 @@
             }
         }
 
-        // Fungsi Muat Turun PDF
         async function generatePDF() {
             try {
                 const timeVal = document.getElementById('pdfTime').value;
