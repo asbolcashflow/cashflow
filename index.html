@@ -542,7 +542,7 @@
             }
         }
 
-        // Fungsi Muat Turun PDF yang Dilengkapi Logo & Blob Stabil
+        // Fungsi Muat Turun PDF yang Dilengkapi Logo & Pelarasan Kolom Notes & Payment
         async function generatePDF() {
             try {
                 const timeVal = document.getElementById('pdfTime').value;
@@ -644,15 +644,15 @@
                     headStyles: { fillColor: [45, 106, 79], textColor: [255, 255, 255], fontStyle: 'bold' },
                     styles: { fontSize: 8, cellPadding: 2.5, overflow: 'linebreak' },
                     columnStyles: {
-                        0: { cellWidth: 10, halign: 'center' },
-                        1: { cellWidth: 32 },
-                        2: { cellWidth: 22 },
-                        3: { cellWidth: 25 },
-                        4: { cellWidth: 16, halign: 'center' },
-                        5: { cellWidth: 22, halign: 'right' },
-                        6: { cellWidth: 22, halign: 'right' },
-                        7: { cellWidth: 22, halign: 'right' },
-                        8: { cellWidth: 'auto' }
+                        0: { cellWidth: 8, halign: 'center' },   // Bil
+                        1: { cellWidth: 28 },                   // Tarikh & Masa dioptimumkan
+                        2: { cellWidth: 20 },                   // Kategori
+                        3: { cellWidth: 24 },                   // Barang
+                        4: { cellWidth: 22, halign: 'center' },   // Payment dibetulkan supaya tidak terpotong
+                        5: { cellWidth: 20, halign: 'right' },  // Modal
+                        6: { cellWidth: 20, halign: 'right' },  // Terjual
+                        7: { cellWidth: 20, halign: 'right' },  // Untung
+                        8: { cellWidth: 'auto' }                // Notes diberi ruang luas (auto) untuk baca comment
                     },
                     didDrawPage: function (data) {
                         let pageWidth = doc.internal.pageSize.width;
