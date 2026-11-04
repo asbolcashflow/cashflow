@@ -585,9 +585,9 @@
                 doc.setTextColor(90, 90, 90);
                 doc.text(`Report Cashflow dari ${startDateStr} hingga ${endDateStr}`, 105, 38, { align: "center" });
 
-                // Kotak Ringkasan Total
+                // Kotak Ringkasan Total (Diperbetulkan menggunakan setDrawColor)
                 doc.setFillColor(245, 247, 246);
-                doc.setLineColor(200, 215, 205);
+                doc.setDrawColor(200, 215, 205);
                 doc.roundedRect(14, 45, 182, 24, 3, 3, 'FD');
 
                 doc.setFontSize(9);
